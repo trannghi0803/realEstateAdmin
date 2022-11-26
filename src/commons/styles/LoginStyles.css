@@ -1,0 +1,56 @@
+.sm-container {
+    margin: 0 auto;
+    max-width: 32.5rem;
+}
+
+.background-login {
+    height: 100vh;
+    width: auto;
+    background-image: url("../../assets/images/login-background.jpg"), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-form {
+    width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+    .login-form {
+        width: 30rem;
+    }
+}
+
+.title-login {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    height: var(--sectionHeight);
+    line-height: 5rem;
+    position: relative;
+    color: #414141;
+}
+
+.PASSWORD-RECOVER {
+    color: #007bff;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.PASSWORD-RECOVER:hover {
+    color: #042344;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.color-common {
+    color: #4BBCF4;
+}
+
+.color-common :hover {
+    color: rgb(170, 228, 230);
+}

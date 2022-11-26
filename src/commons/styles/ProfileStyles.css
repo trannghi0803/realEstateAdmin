@@ -1,0 +1,141 @@
+.frame-profile {
+    padding: 0rem var(--default-24px);
+    padding-top: var(--default-40px);
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.title-profle {
+    font-size: var(--default-24px);
+    color: var(--default-text-color-green);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.avt-profile {
+    height: 6.67rem !important;
+    width: 6.67rem !important;
+    margin-right: 2.17rem;
+}
+
+.btn-green {
+    background-color: var(--default-text-color-green);
+    height: 4.33rem;
+    padding: 0rem 2rem;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 0rem var(--default-8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--default-font-700);
+}
+
+.btn-white {
+    background-color: white;
+    height: 4.33rem;
+    padding: 0rem 2rem;
+    color: #111;
+    border: 1px solid #E9E9E9;
+    border-radius: 8px;
+    margin: 0rem var(--default-8px);
+}
+.label-button{
+    width: fit-content;
+}
+.change-profile {
+    color: var(--default-text-color-green);
+    text-decoration-line: underline;
+    font-size: var(--default-12px);
+    line-height: var(--default-20px);
+    cursor: pointer;
+}
+
+.account-profile {
+    height: 4.58rem;
+    align-items: center;
+    border-top: 1px solid #e7e4e4;
+}
+
+.menu-botton-line {
+    min-width: auto !important;
+    margin: 2rem;
+    white-space: nowrap;
+    margin-bottom: 0rem;
+}
+
+.menu-botton-line>span {
+    padding-bottom: 0.5rem;
+    font-size: var(--default-16px);
+    height: 2.5rem;
+    color: #4F4F4F;
+    position: relative;
+    display: block;
+    padding: 1px 0;
+    text-decoration: none;
+    transition: 0.5s;
+    width: fit-content;
+}
+
+.menu-botton-line>span::after {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--default-text-color-green);
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.menu-botton-line>span:hover::after {
+    transform: scaleX(1);
+    /* transform-origin: left; */
+}
+
+.menu-botton-line:first-child {
+    margin: 2rem;
+    margin-bottom: 0rem;
+    margin-left: 0rem;
+}
+
+.menu-botton-line-active>span {
+    font-weight: bold;
+    border-bottom: 2px solid var(--default-text-color-green);
+    transition: transform 0.5s;
+}
+
+.value-sale {
+    color: var(--default-text-color-yellow);
+    text-decoration: line-through;
+}
+.wrap-items-order{
+    min-height: 24rem;
+}
+@media only screen and (max-width: 600px){
+    .frame-profile{
+        width: 100%;
+        padding: 1rem;
+    }
+    .btn-green{
+        padding: 0rem 1rem;
+    }
+    .btn-green span{
+        width: max-content;
+    }
+    .avt-profile{
+        margin-right: 1rem;
+    }
+}
+@media only screen and (max-width: 280px){
+    .btn-white{
+
+        padding: 0rem 0.7rem;
+    }
+    .btn-green{
+        padding: 0rem 0.7rem;
+    }
+}

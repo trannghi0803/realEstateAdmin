@@ -1,0 +1,70 @@
+.drawer-header {
+    margin-top: 58px;
+}
+
+.container-detail {
+    position: absolute;
+    bottom: 3.33rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.container-detail .title-name {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.33rem;
+    line-height: 3rem;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.container-detail .title-price {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.33rem;
+    line-height: 1.66rem;
+    color: #ffff;
+    margin: 1rem 0rem;
+}
+
+.introduce {
+    height: 40.08rem;
+    background-image: url("../../assets/images/Pattern1.svg");
+    background-size: cover;
+    text-align: center;
+}
+
+.introduce .logo {
+    margin-top: 3.33rem;
+    margin-bottom: 2.5rem;
+    width: 8.33rem;
+    height: 6rem;
+}
+
+.introduce .text-content {
+    margin: 0rem 3.66rem;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.16rem;
+    line-height: 1.66rem;
+    color: #36393B;
+}
+
+.container-partner .img-partner {
+    height: 8.66rem;
+    background-size: cover;
+    width: 8rem;
+    margin: 0.2rem;
+}
+
+.container-partner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: space-around;
+    background: #fff;
+}

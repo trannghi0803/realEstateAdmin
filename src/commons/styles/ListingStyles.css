@@ -1,0 +1,286 @@
+.search-e-comercio {
+    height: var(--default-56px);
+    background-color: #fff;
+    background: #FFFFFF;
+    box-shadow: 0px 24px 20px rgb(0 0 0 / 2%);
+    border-radius: 100px;
+    padding: var(--default-16px);
+    color: #181818;
+    font-size: var(--default-14px);
+    align-items: center;
+}
+
+.box-detail {
+    height: 100%;
+    position: relative;
+}
+
+.box-detail {
+    position: absolute;
+    width: 100%;
+    position: sticky;
+    top: 1rem;
+    border-radius: 8px;
+    background-size: cover;
+}
+
+
+
+.slider-info {
+    position: absolute;
+    top: 60%
+}
+
+.card-info-e-comercio {
+    max-width: 366px !important;
+    height: 13.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: auto;
+    /* position: absolute;
+    top: 65%; */
+}
+
+.card-info-e-comercio .img-apartment {
+    width: 100%;
+    background-size: cover;
+    border-radius: 8px;
+}
+
+.card-info-e-comercio .title-apartment {
+    color: var(--default-text-color-green);
+    text-transform: uppercase;
+    font-size: var(--default-12px);
+}
+
+.card-info-e-comercio .name-apartment {
+    font-weight: bold;
+    font-size: var(--default-16px);
+    line-height: var(--default-20px);
+}
+
+.card-info-e-comercio .price-aparment {
+    font-weight: bold;
+    font-size: var(--default-20px);
+    line-height: var(--default-28px);
+    color: var(--default-text-color-yellow)
+}
+
+
+
+.card-result-apartment {
+    /* padding: var(--default-8px) var(--default-18px); */
+    position: fixed;
+    bottom: 0px;
+    background: #ffffff;
+    height: 6.5rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+
+.wrap-result {
+    padding: var(--default-8px) var(--default-18px);
+}
+
+.show-card-result-apartment {
+    height: 70%;
+    z-index: 10;
+}
+
+.box-result {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.box-result::-webkit-scrollbar {
+    display: none;
+}
+
+.box-result .swipe-content {
+    display: unset;
+}
+
+.swipe-content {
+    display: none;
+}
+
+.menu-find-apartment .project-item {
+    width: fit-content;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    padding: 0.5rem 1.5rem;
+    white-space: pre-wrap;
+    margin: 0.5rem;
+    margin-left: 0rem;
+    min-height: 2.33rem;
+    background-color: #E9E9E9;
+    color: #AFAFAF;
+    line-height: 18px;
+}
+
+.menu-find-apartment .project-item .project-item-name {
+    color: var(--default-text-color-green);
+    line-height: 18px;
+    margin-right: var(--default-8px);
+}
+
+
+/* .menu-find-apartment .project-item.active {
+    color: #229099;
+} */
+
+.menu-find-apartment {
+    display: flex;
+    overflow-x: auto;
+    margin-top: var(--default-18px);
+    margin-bottom: var(--default-18px);
+    flex-wrap: wrap;
+    padding-left: 2rem;
+}
+
+.menu-find-apartment::-webkit-scrollbar {
+    display: none;
+}
+
+.swipe {
+    height: 25px;
+    width: 40px;
+}
+
+.container-e-comercio {
+    min-height: calc(100vh - 10rem);
+    background-color: #fff;
+    position: relative;
+    padding-bottom: 0rem;
+    display: flex;
+}
+
+.form-map {
+    width: 100%;
+    position: sticky;
+    top: 0rem;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 960px) {
+    .container-e-comercio {
+        padding: 0rem;
+    }
+    .container-e-comercio {
+        height: 70%;
+        min-height: calc(100vh - 12rem);
+    }
+    .form-map {
+        height: 100%;
+    }
+    .card-result-apartment {
+        z-index: 10;
+        position: fixed;
+        bottom: 0;
+    }
+    .box-detail {
+        border-radius: 0px;
+    }
+}
+
+.frame-item-left {
+    max-width: 120rem;
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+.show-map{
+    width: 50%;
+}
+
+.title-show-item {
+    color: #4F4F4F;
+    font-weight: 500;
+    font-size: var(--default-16px);
+    padding: 0rem 2rem;
+}
+
+.wrap-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--default-40px) 0rem;
+}
+
+.leaflet-container {
+    width: 100%;
+    position: sticky;
+    bottom: 0rem;
+    height: 100vh;
+}
+
+.leaflet-popup-content-wrapper {
+    background: unset !important;
+    color: unset !important;
+    box-shadow: unset !important;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: unset !important;
+    color: unset !important;
+    box-shadow: unset !important;
+}
+.search-mobie-container{
+    position: absolute;
+    top: 2rem;
+    left: 5rem;
+    width: 80% !important;
+}
+.card-w {
+    width: 320px;
+}
+
+.show-map{
+    transform: scaleX(1);
+    transform-origin: 100% 50%;
+    transition-duration: 1s;
+}
+.map-project{
+    transition: all 1s;
+    transform-origin: 100% 50%;
+    width: 50%;
+}
+.hide-map{
+    width: 0%;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition-duration: 1s;
+}
+.button-show-hide{
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #4F4F4F;
+    font-size: 3rem;
+    height: 100%;
+    line-height: 0;
+    border: 1px solid;
+    cursor: pointer;
+}
+.button-show-hide:hover{
+    background-color: #4F4F4F;
+    color: #fff;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.item-project-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 0rem 2rem;
+}
+
+@media only screen and (max-width: 968px) {
+    .item-project-list{
+        justify-content: center;
+        padding: 0
+    }
+}

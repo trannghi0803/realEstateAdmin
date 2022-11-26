@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family:  'Roboto',  'Ubuntu', 'Cantarell', 'SVN-Gotham Bold',  'SVN-Gotham Bold Italic',  'SVN-Gotham Book', 'SVN-Gotham Book Italic',  'SVN-Gotham Italic', 'SVN-Gotham Light', 'SVN-Gotham Light Italic', 'SVN-Gotham Regular', 'SVN-Gotham Thin', 'SVN-Gotham Ultra',  'SVN-Gotham Ultra Italic', 'SVN-Gotham Ultra Italic', 'SVN-Gotham XLight', 'SVN-Gotham XLight Italic';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+@font-face {
+    font-family: 'SVN-Gotham Bold';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Bold.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SVN-Gotham Book';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Book.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SVN-Gotham Italic';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Italic.otf) format('truetype');
+}
+@font-face {
+    font-family: 'SVN-Gotham Light';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Light.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SVN-Gotham Regular';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Regular.otf) format('truetype');
+}
+@font-face {
+    font-family: 'SVN-Gotham Thin';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Thin.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SVN-Gotham Ultra';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ Ultra.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SVN-Gotham XLight';
+    src: local('SVN-Gotham Black Italic'), url(./assets/fonts/Gotham/SVN-Gotham\ XLight.otf) format('truetype');
+}
+

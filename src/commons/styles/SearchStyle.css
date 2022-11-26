@@ -1,0 +1,15 @@
+.frame-result-search{
+    min-height: 50vh;
+    padding: 5rem 10rem;
+
+}
+@media only screen and (max-width: 768px){
+    .frame-result-search{
+        min-height: 50vh;
+        padding: 1rem;
+    }
+}
+.box-result{
+    border-bottom: 1px solid var(--default-text-color-yellow);
+    padding: 2rem 0rem;
+}
