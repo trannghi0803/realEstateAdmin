@@ -14,11 +14,10 @@ interface IProps extends RouteProps {
 }
 function AuthenticatedGuard(props: IProps) {
     const { component: Component, ...rest } = props;
-    const cookies = new Cookies();
+    
+    const isAuthenticated = GlobalState.isAuthenticated;
 
-
-    const accessToken = cookies.get('token') || "";
-    const user = GlobalState.user ;
+    
     const strMenu = localStorage.getItem(Constants.StorageKeys.MENU_ITEM) || "[]";
     const renderKey = +(localStorage.getItem("key") || "");
     const menu: IMenuItem[] = JSON.parse(strMenu);
@@ -26,16 +25,13 @@ function AuthenticatedGuard(props: IProps) {
         <Route
             {...rest}
             render={(p) => {
-                if (!user && Helpers.isNullOrEmpty(accessToken)) {
-                    return <Redirect to={Screens.AUTH_LOGIN} />;
+                if (!isAuthenticated) {
+                    return <Redirect to={Screens.HOME} />;
                 }
                 return (
-                    <AdminLayout
-                        renderKey={renderKey}
-                        menu={menu}
-                        title={Helpers.getTitle()}>
+                    <div>
                         <Component {...p} />
-                    </AdminLayout>
+                    </div>
                 );
             }}
         />

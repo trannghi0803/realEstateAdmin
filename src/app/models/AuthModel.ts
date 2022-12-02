@@ -5,6 +5,7 @@ class AuthModel extends BaseModel {
     public password?: string;
     public errUsername?: string;
     public errPassword?: string;
+    public active_token?: string;
 }
 
 export default AuthModel;

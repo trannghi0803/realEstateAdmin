@@ -9,6 +9,14 @@ class ApartmentService extends BaseSevice {
         return result.data;
     }
 
+    public getPaged = async (data?: any) => {
+        const result = await this.api.get({
+            path: Constants.ApiPath.REAL_ESTATE,
+            query: data
+        });
+        return result.data;
+    }
+
     public getDetail = async (id: string) => {
         const result = await this.api.get({
             path: `${Constants.ApiPath.REAL_ESTATE}/${id}`,
@@ -35,6 +43,27 @@ class ApartmentService extends BaseSevice {
         const result = await this.api.put({
             path: `${Constants.ApiPath.REAL_ESTATE}/${data.id}`,
             data
+        });
+        return result.data;
+    }
+
+    public getByHighLight = async (type: number, limit: number) => {
+        const result = await this.api.get({
+            path: Constants.ApiPath.REAL_ESTATE_GET_BY_HIGHLIGHT + `${type}?limit=${limit}`,
+        });
+        return result.data;
+    }
+
+    public getByCategory = async (categoryId: string, limit: number) => {
+        const result = await this.api.get({
+            path: Constants.ApiPath.REAL_ESTATE_GET_BY_CATEGORY + `${categoryId}?limit=${limit}`,
+        });
+        return result.data;
+    }
+
+    public getByUser = async () => {
+        const result = await this.api.get({
+            path: Constants.ApiPath.REAL_ESTATE_BY_USER,
         });
         return result.data;
     }

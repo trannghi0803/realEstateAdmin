@@ -16,6 +16,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import ListingApartmentController from "../../controllers/listing/ListingApartmentController";
 import { IApartment } from "../../../commons/utils";
 import { Pagination } from "@material-ui/lab";
+import { GlobalState } from "../../../stores/GlobalState";
 
 @observer
 export default class ListingApartmentView extends BaseView<ListingApartmentController, ListingModel, ListingService> {
@@ -53,7 +54,7 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                                     </Grid>
                                     : null
                                 }
-                                {this.model.projectIdSearch?.value ? (
+                                {/* {this.model.projectIdSearch?.value ? (
                                     <Grid className="project-item">
                                         <span className="project-item-name">
                                             {this.model.projectIdSearch.label}
@@ -65,12 +66,12 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                                     </Grid>
                                 ) : (
                                     ""
-                                )}
+                                )} */}
                                 {this.model.province?.value
                                     ?
                                     <Grid className="project-item">
                                         <span className="project-item-name">
-                                            {Helpers.getCodeName('province', this.model.province?.value)}
+                                        {GlobalState.listProvinceList?.find((el: any) => el.value === GlobalState.filterObj?.province)?.label}
                                         </span>
                                         {this.model.districtName ?
                                             <span className="project-item-name">
@@ -130,10 +131,10 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                                     return (
                                         <Grid
                                             className="d-flex justify-content-center m-3"
-                                            key={apartment.id}
+                                            key={apartment._id}
                                         >
                                             <CardApartment
-                                                onClick={() => this.history.push({pathname: Screens.APARTMENT, search: `?&id=${apartment.id}`})}
+                                                onClick={() => this.history.push({pathname: Screens.APARTMENT, search: `?&id=${apartment._id}`})}
                                                 onClickLike={() => {}}
                                                 apartment={apartment}
                                                 voucherName={Strings.Common.VOUCHER_NAME}
@@ -146,7 +147,10 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                             {(this.model.listApartment || [])?.length > 0 ?
                                 <Grid className="w-100 wrap-pagination">
                                     <Pagination className="custom-pagination" count={this.model.totalPages} page={this.model.currentPage} onChange={this.controller.handleChangePagination}/>
-                                </Grid> : ''
+                            </Grid> : 
+                            <Grid className="w-100 wrap-pagination">
+                                Không có dữ liệu
+                            </Grid> 
                             }
                         </Grid>
                 </Grid>

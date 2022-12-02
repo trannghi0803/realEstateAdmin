@@ -2,7 +2,7 @@ import { IApartment, IOptionSelect, IProject } from "../../commons/utils/Interfa
 import BaseModel from "./BaseModel";
 
 class HomeModel extends BaseModel {
-    projects?: IProject[];
+    listItemHighLight?: any[];
     projectItem?: any;;
 
 

@@ -5,7 +5,7 @@ import { GlobalState, ModelStorage } from "../../../stores/GlobalState";
 import { History } from "history";
 import { BaseController } from "../../controllers/base";
 import { EventEmitter } from "events";
-import { ControlLoading, Header } from "../../../components";
+import { ControlLoading, FormForgotPassword, Header } from "../../../components";
 import Aos from "aos";
 import ScrollToTop from "../../../components/ScrollToTop";
 import CustomModal from "../../../components/CustomModal";
@@ -160,14 +160,18 @@ class BaseView<TController extends BaseController<{}, {}>, TModel, TService> ext
     public renderPage() {
         return <div ></div>;
     }
+
     public renderModelLogin() {
         return (
             <>
-                <CustomModal sizeModal="small" show={GlobalState.isOpenModalLogin || false} onClose={(value) => GlobalState.setModalLogin(value)} header={"Phu Long Smile Living"}>
+                <CustomModal sizeModal="small" show={GlobalState.isOpenModalLogin || false} onClose={(value) => GlobalState.setModalLogin(value)} header={Strings.Home.LOGIN}>
                     <FormLogin onCreateSuccess={(value)=>GlobalState.setModalLogin(value) }/>
                 </CustomModal>
                 <CustomModal sizeModal="medium" show={GlobalState.isOpenModalRegister || false} onClose={(value) => GlobalState.setModalRegister(value)} header={Strings.Home.REGISTER}>
                     <FormRegister onCreateSuccess={(value)=>GlobalState.setModalRegister(value) } />
+                </CustomModal>
+                <CustomModal sizeModal="medium" show={GlobalState.isOpenModalForgotPassword || false} onClose={(value) => GlobalState.setModalForgotPassword(value)} header={Strings.Login.PASSWORD_RECOVER}>
+                    <FormForgotPassword onCreateSuccess={(value) => GlobalState.setModalForgotPassword(value)} />
                 </CustomModal>
             </>
 

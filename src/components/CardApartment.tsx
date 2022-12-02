@@ -137,7 +137,7 @@ const useStyles = makeStyles(() => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
     },
- 
+
 }));
 interface IProps {
     fontSizePrice?: string;
@@ -162,7 +162,7 @@ export default function CardApartment(props: IProps) {
     return (
         <Grid className={`${classes.cardApartment} cursor-pointer`} >
             <span onClick={props.onClick}>
-				<Image loading={<CircularProgress style={{color: 'var(--default-text-color-yellow)'}}/>} style={{ width: '100%', height: '50%', objectFit: 'cover', paddingTop: '0', borderRadius: '24px'}}className={(classes.imgApartment) + " cursor-pointer"} src={apartmentPhotos[0] || Resources.Images.DEFAULT}  />
+                <Image loading={<CircularProgress style={{ color: 'var(--default-text-color-yellow)' }} />} style={{ width: '100%', height: '50%', objectFit: 'cover', paddingTop: '0', borderRadius: '24px' }} className={(classes.imgApartment) + " cursor-pointer"} src={apartmentPhotos[0] || Resources.Images.DEFAULT} />
                 <img className={`${props.apartment?.isHighlight ? classes.iconStatusHot : 'd-none'} animated`} src={Resources.Icon.STATUS.HOT_1} />
             </span>
             {/* {GlobalState.listFavorite?.find((item: IFavorite) => item.apartmentId === props.apartment?.id) !== undefined ?
@@ -206,21 +206,28 @@ export default function CardApartment(props: IProps) {
                         :
                         Strings.Common.NOT_SALE_YET
                     } */}
-                    {props.apartment?.price ?
-                        <Grid className="d-flex justify-content-between align-items-end mb-3">
-                            {props.apartment?.price}
-                            {props.apartment?.area ?
-                                <Grid className="d-flex align-items-center white-space-nowrap">
-                                    <Tooltip title={`${Strings.Components.AREA}`} placement="bottom-start" arrow>
-                                        <img className="img-24 mr-2" src={Resources.Icon.GREEN_SQUARE} />
-                                    </Tooltip>
-                                    {props.apartment.area} {Strings.Common.SQUARE_METTER}
-                                </Grid>
-                                : null}
-                         </Grid>
-                        :
-                        Strings.Common.NOT_SALE_YET
-                    }
+                    {/* {props.apartment?.price ? */}
+                    <Grid className="d-flex justify-content-between align-items-end mb-3">
+                        {props.apartment?.price ?
+                            <Grid className="d-flex align-items-center white-space-nowrap">
+                                <Tooltip title={`${Strings.Components.AREA}`} placement="bottom-start" arrow>
+                                    <img className="img-24 mr-2" src={Resources.Icon.DONG_GREEN} />
+                                </Tooltip>
+                                <CardPriceString number={[props.apartment.price || 0]} />
+                                {/* {props.apartment.price} */}
+                            </Grid> : Strings.Common.NOT_SALE_YET
+                        }
+                        {props.apartment?.area ?
+                            <Grid className="d-flex align-items-center white-space-nowrap">
+                                <Tooltip title={`${Strings.Components.AREA}`} placement="bottom-start" arrow>
+                                    <img className="img-24 mr-2" src={Resources.Icon.GREEN_SQUARE} />
+                                </Tooltip>
+                                {props.apartment.area} {Strings.Common.SQUARE_METTER}
+                            </Grid>
+                            : null}
+                    </Grid>
+
+                    {/* } */}
                 </Grid>
                 <Grid className="d-flex justify-content-start">
                     <img src={Resources.Icon.GREEN_MAP} />

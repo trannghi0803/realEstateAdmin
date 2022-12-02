@@ -214,17 +214,17 @@ export default function Footer(props: IProps) {
                                 <Grid className="d-flex justify-content-between">
                                     <Grid>
                                         <Grid className={classes.exchange}>{Strings.Home.TYPE_REAL_ESTATE}</Grid>
-                                        <Grid className={classes.info} >
-                                            <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.RESORT}`}>{Strings.Common.PERSONAL_PROPERTY_RESORT}</Link>
+                                        <Grid className={classes.info}>
+                                            <Link color="inherit" to={'#'}>{Strings.Common.APARTMENT_URBAN_AREA}</Link>
                                         </Grid>
                                         <Grid className={classes.info}>
-                                            <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.HOUSE}`}>{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
+                                            <Link color="inherit" to={'#'}>{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
                                         </Grid>
                                         <Grid className={classes.info}>
-                                            <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.OFFICE}`}>{Strings.Common.PERSONAL_PROPERTY_OFFICE}</Link>
+                                            <Link color="inherit" to={'#'}>{Strings.Common.VILLAS}</Link>
                                         </Grid>
                                         <Grid className={classes.info}>
-                                            <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.URBAN_AREA}`}>{Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}</Link>
+                                            <Link color="inherit" to={'#'}>{Strings.Common.LAND}</Link>
                                         </Grid>
                                     </Grid>
                                     <Grid className="z-index-1">
@@ -351,16 +351,16 @@ export default function Footer(props: IProps) {
                     <hr className={classes.hr} />
                     <Grid className="text-green font-16 font-weight-bold">{Strings.Home.TYPE_REAL_ESTATE}</Grid>
                     <Grid className={classes.info}>
-                        <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.RESORT}`}>{Strings.Common.PERSONAL_PROPERTY_RESORT}</Link>
+                        <Link color="inherit" to={'#'}>{Strings.Common.APARTMENT_URBAN_AREA}</Link>
                     </Grid>
                     <Grid className={classes.info}>
-                        <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.HOUSE}`}>{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
+                        <Link color="inherit" to={'#'}>{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
                     </Grid>
                     <Grid className={classes.info}>
-                        <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.OFFICE}`}>{Strings.Common.PERSONAL_PROPERTY_OFFICE}</Link>
+                        <Link color="inherit" to={'#'}>{Strings.Common.VILLAS}</Link>
                     </Grid>
                     <Grid className={classes.info}>
-                        <Link color="inherit" to={`${Screens.COMMERCE}?type=${Constants.TYPE.URBAN_AREA}`}>{Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}</Link>
+                        <Link color="inherit" to={'#'}>{Strings.Common.LAND}</Link>
                     </Grid>
                     <hr className={classes.hr} />
                     <Grid className="text-green font-16 font-weight-bold">{Strings.Home.INFO_HELPFUL}</Grid>

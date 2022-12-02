@@ -10,6 +10,9 @@ import { CallbackView } from "../app/views/auth";
 import { ListingApartmentView } from "../app/views/listing";
 import CommerceView from "../app/views/commerce/CommerceView";
 import { SearchView } from "../app/views/search";
+import { ProfileView } from "../app/views/profile";
+import FavoriteItem from "../app/views/profile/FavoriteView";
+import SubmitRealEstateView from "../app/views/profile/SubmitRealEstateView";
 
 export default function HomeRoutes() {
     return (
@@ -24,6 +27,10 @@ export default function HomeRoutes() {
             <Route exact path={Screens.NEWS_DETAIL} render={(p) => { return <NewsDetailView {...p} />; }} />
             <Route path={Screens.CALLBACK} component={CallbackView} />
             <Route path={Screens.SEARCH} component={SearchView} />
+            {/* <Route exact path={Screens.PROFILE} render={(p) => { return <ProfileView {...p} />; }} />
+            <Route exact path={Screens.FAVORITE} render={(p) => { return <FavoriteItem {...p} />; }} />
+            <Route exact path={Screens.USER_SUBMIT_REAL_ESTATE} render={(p) => { return <SubmitRealEstateView {...p} />; }} /> */}
+
         </Switch>
     );
 }

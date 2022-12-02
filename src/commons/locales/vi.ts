@@ -28,6 +28,7 @@ export default {
         DOWN_DOCUMENT: "Tải tài liệu",
         SEND_REQUEST: "Gửi yêu cầu",
         FAVORITE: "Yêu thích",
+        YOUR_REAL_ESTATE: "Bài đăng của bạn",
         SHARE: "Chia sẽ",
         VIEW_360: "Xem 360°",
         VIEW_VIDEO: "Xem video",
@@ -36,7 +37,7 @@ export default {
         REGISTER: "Đăng ký",
         CHOOSE_BANK: "Chọn ngân hàng",
         PAY: "Thanh toán",
-
+        GO_BACK: "TRỞ VỀ",
         //Direction
         EAST: "Đông",
         WEST: "Tây",
@@ -69,6 +70,8 @@ export default {
         MESSAGE: "Lời nhắn",
         CONFIRM_PASSWORD: "Nhập lại mật khẩu",
         PASSWORD: "Mật khẩu",
+        CHANGE_PASSWORD: "Đổi mật khẩu",
+        NEW_PASSWORD: "Mật khẩu mới",
         METHOD: "Phương thức",
         STATUS: "Trạng thái",
         DATE_TRANSITION: "Giao dịch ngày",
@@ -77,16 +80,16 @@ export default {
         // PROPERTY
         PERSONAL_PROPERTY_HIGHTLIGHT: "Bất động sản nổi bật",
         PERSONAL_PROPERTY_HOUSE: "Bất động sản nhà ở",
-        PERSONAL_PROPERTY_RESORT: "Bất động sản nghỉ dưỡng",
-        PERSONAL_PROPERTY_OFFICE: "Thương mại văn phòng",
-        PERSONAL_PROPERTY_URBAN_AREA: "Khu đô thị",
+        VILLAS: "Bán nhà biệt thự, liền kề",
+        APARTMENT_URBAN_AREA: "Căn hộ, chung cư",
+        LAND: "Đất nền",
 
         //Not yet
         NO_VIDEO_YET: "Chưa có video",
-        NOT_SALE_YET: "Chưa mở bán",
+        NOT_SALE_YET: "Thỏa thuận",
 
         // Infomation company
-        COMPANY_NAME: "Công ty Cổ phần Phú Long Smile Living",
+        COMPANY_NAME: "Công ty Cổ phần TVN Land Smile Living",
         GROUND_FLOOR_HD_TOWER_BUILDING: "Tầng trệt, tòa nhà HD Tower,",
         HEADQUARTERS_ADDRESS: "Số 25Bis, Đường Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, TP.HCM",
         VOUCHER_NAME: "Voucher lên tới 200 triệu",
@@ -107,6 +110,10 @@ export default {
         OK: "OK",
         SAVE: "Lưu",
         SUCCESS: "Thành công",
+        CREATE_SUCCESS: "Tạo hành công",
+        UPDATE_SUCCESS: "Cập nhật thành công",
+        UPDATE_SUCCESS_WAITING_APPROVE: "Cập nhật thành công và đang chờ duyệt",
+        CREATE_SUCCESS_WAITING_APPROVE: "Tạo thành công và đang chờ duyệt",
         CHOOSE_PROJECT: "Dự án quý khách quan tâm", 
         NEXT: "Tiếp tục",
         INSERT_EMAIL: "Nhập email"
@@ -155,9 +162,9 @@ export default {
     },
 
     Login: {
-        //Link: https://id.phulongsmileliving.com/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dpl-ores-web-aws-com%26redirect_uri%3Dhttps%253A%252F%252Fwww.phulongsmileliving.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%26state%3D88335bccbcd44b29913908af5530d619%26code_challenge%3DiHfi6D1Eb9gFYJ5d_csHNLlI2RbR2C085Wm13TKp4uM%26code_challenge_method%3DS256%26response_mode%3Dquery
         TITLE: "Đăng nhập",
         ACCOUNT_NAME: "Tên tài khoản",
+        EMAIL: "Địa chỉ Email",
         ACCOUNT_PASSWORD: "Mật khẩu",
         DONT_HAVE_ACCOUNT: "Chưa có tài khoản?",
         PASSWORD_RECOVER: "Quên mật khẩu?",
@@ -165,7 +172,6 @@ export default {
     },
 
     ProfileInfo: {
-        // Link: https://www.phulongsmileliving.com/profile
         TITLE: "Thông tin tài khoản",
         IMAGE_UPLOAD: "Thêm ảnh đại diện",
         EMAIL_ADDRESS: "Email",
@@ -230,6 +236,7 @@ export default {
         NEWS_EVENT: "Tin tức & sự kiện",
         FLOOR: "Số tầng",
         PROJECT_HIGHTLIGHT: "Dự án nổi bật",
+        REALESTE_HIGHTLIGHT: "Bất động sản nổi bật",
         ABOUT_TO_ANNOUNCE: "Sắp công bố",
         ABOUT_US: "Về chúng tôi",
         PROJECT: 'Dự án',
@@ -240,7 +247,8 @@ export default {
         TYPE_REAL_ESTATE: "Loại hình bất động sản",
         LOGIN: "Đăng nhập",
         REGISTER: "Đăng ký",
-        REGISTER_SUCCESS: "Bạn đã đăng ký thành công",
+        REGISTER_SUCCESS: "Bạn đã đăng ký thành công. Vui lòng kiểm tra Email để kích hoạt tài khoản",
+        ACTIVE_SUCCESS: "Bạn đã kích hoạt tài khoản thành công. Vui lòng đăng nhập để có những tính năng mới",
         LOGIN_FB: "Đăng nhập bằng Facebook",
         LOGIN_GG: "Đăng nhập bằng Google",
         LOGIN_EMAIL: "Đăng nhập bằng Email",
@@ -252,7 +260,7 @@ export default {
         SALE: "Mua bán",
         FOR_RENT: "Cho thuê",
         SEND_ADVISORY: "Gửi yêu cầu tư vấn",
-        SEND_SUCCESS: "Xin cảm ơn Quý Khách hàng đã quan tâm đến các dự án của Phú Long. Chúng tôi đã nhận thông tin của Khách Hàng và sẽ liên hệ Quý Vị trong thời gian sớm nhất.",
+        SEND_SUCCESS: "Xin cảm ơn Quý Khách hàng đã quan tâm đến các dự án của TVN Land. Chúng tôi đã nhận thông tin của Khách Hàng và sẽ liên hệ Quý Vị trong thời gian sớm nhất.",
         SEND_ERROR: "Yêu cầu của Quý khách không được thực hiện. Vui lòng kiểm tra lại",
 
         // PROPERTY
@@ -266,8 +274,8 @@ export default {
 
     Introduction: {
         // Link : https://www.phulongsmileliving.com/introduction
-        TITLE_ANIMATION: "Phu Long Smile Living",
-        ABOUT_US_CONTENT: "Là thành viên của Công ty Cổ phần Địa ốc Phú Long (thuộc tập đoàn Sovico), Phú Long Smile Living (PLSL) được thành lập để cung cấp những giải pháp an cư vượt trội, gia tăng giá trị bền vững và mang đến trải nghiệm sống tốt hơn cho khách hàng. Phú Long Smile Living đặt sự bền vững là kim chỉ nam, lấy tâm thế phụng sự khách hàng dể dẫn dắt thị trường. Với phương châm luôn gắn kết trách nhiệm của mình với giá trị bất động sản của khách hàng Phú Long Smile Living sẽ luôn nỗ lực trong việc giữ vững mọi cam kết, đảm bảo hài hoà lợi ích khách hàng và uy tín thương hiệu chủ đầu tư.",
+        TITLE_ANIMATION: "TVN Land Smile Living",
+        ABOUT_US_CONTENT: "Là thành viên của Công ty Cổ phần Địa ốc TVN Land (thuộc tập đoàn Sovico), TVN Land Smile Living (PLSL) được thành lập để cung cấp những giải pháp an cư vượt trội, gia tăng giá trị bền vững và mang đến trải nghiệm sống tốt hơn cho khách hàng. TVN Land Smile Living đặt sự bền vững là kim chỉ nam, lấy tâm thế phụng sự khách hàng dể dẫn dắt thị trường. Với phương châm luôn gắn kết trách nhiệm của mình với giá trị bất động sản của khách hàng TVN Land Smile Living sẽ luôn nỗ lực trong việc giữ vững mọi cam kết, đảm bảo hài hoà lợi ích khách hàng và uy tín thương hiệu chủ đầu tư.",
 
         // AchievementListName
         ACHIEVEMENT_NAME_1: "Top 100 Thương Hiệu Mạnh Việt Nam 2018",
@@ -276,7 +284,7 @@ export default {
         ACHIEVEMENT_NAME_4: "Thương hiệu việt được yêu thích 2020",
         ACHIEVEMENT_NAME_5: "Giải thưởng quốc gia – Khu đô thị tốt nhất Việt Nam năm 2018",
         ACHIEVEMENT_NAME_6: "Các danh hiệu do Tập đoàn PropertyGuru Vietnam tại Property Awards 2018",
-        ACHIEVEMENT_TEXT: "Những năm vừa qua, Phú Long đã đạt được nhiều thành tựu quan trọng, tiếp tục khẳng định vị thế vững chắc trên thị trường và không ngừng phát triển để trở thành thương hiệu Bất động sản mang tầm vóc quốc tế.",
+        ACHIEVEMENT_TEXT: "Những năm vừa qua, TVN Land đã đạt được nhiều thành tựu quan trọng, tiếp tục khẳng định vị thế vững chắc trên thị trường và không ngừng phát triển để trở thành thương hiệu Bất động sản mang tầm vóc quốc tế.",
 
         // Vision
         VISION: "Tầm nhìn",
@@ -294,7 +302,7 @@ export default {
 
         // Value
         VALUE_CORE: "Giá trị cốt lõi",
-        VALUE_CORE_INTRO_MODEL_CONTENT: "- Dẫn đầu xu thế: Không ngừng sáng tạo, mang đến sản phẩm, dịch vụ có chất lượng vượt trội, thẩm mỹ cao, tối đa hoá công năng sử dụng và có giá trị bền vững với thời gian.\n - Tin cậy: Luôn thực hiện đúng cam kết, tuân thủ mọi chuẩn mực xây dựng tốt nhất & phương thức quản lý hiệu quả nhất.\n -Nhân văn: hệ sinh thái bất động sản Phú Long - nơi cuộc sống nở hoa và được vun xới từ một cộng đồng vững mạnh, dân trí quốc tế cao, tràn ngập tính cởi mở hợp tác trong một mội trường chuẩn mực, nhân văn.",
+        VALUE_CORE_INTRO_MODEL_CONTENT: "- Dẫn đầu xu thế: Không ngừng sáng tạo, mang đến sản phẩm, dịch vụ có chất lượng vượt trội, thẩm mỹ cao, tối đa hoá công năng sử dụng và có giá trị bền vững với thời gian.\n - Tin cậy: Luôn thực hiện đúng cam kết, tuân thủ mọi chuẩn mực xây dựng tốt nhất & phương thức quản lý hiệu quả nhất.\n -Nhân văn: hệ sinh thái bất động sản TVN Land - nơi cuộc sống nở hoa và được vun xới từ một cộng đồng vững mạnh, dân trí quốc tế cao, tràn ngập tính cởi mở hợp tác trong một mội trường chuẩn mực, nhân văn.",
         VALUE_CORE_TITLE_1: "KHÁCH HÀNG",
         VALUE_CORE_TITLE_1_CONTENT: "Đặt khách hàng là trọng tâm trong mọi hoạt động",
         VALUE_CORE_TITLE_2: "ĐỒNG ĐỘI",
@@ -308,7 +316,7 @@ export default {
 
         // Map
         MAP_TITLE: "DANH MỤC DỰ ÁN TRẢI DÀI KHẮP VIỆT NAM",
-        MAP_CONTENT: "Với vai trò Tư vấn tiếp thị và Kinh doanh bất động sản, Phú Long Smile Living đang sở hữu chuỗi giá trị trải dài từ bất động sản nhà ở, bất động sản thương mại đến bất động sản nghỉ dưỡng.",
+        MAP_CONTENT: "Với vai trò Tư vấn tiếp thị và Kinh doanh bất động sản, TVN Land Smile Living đang sở hữu chuỗi giá trị trải dài từ bất động sản nhà ở, bất động sản thương mại đến bất động sản nghỉ dưỡng.",
         SEARCH_BY_REGION: "Tìm theo khu vực",
         PROJECT_LIST: "Danh sách các dự án",
     },
@@ -387,6 +395,7 @@ export default {
         CONFIMED: "Đã xác nhận",
         ITEM_DETAIL: "Chi tiết đơn hàng",
         UPDATE_SUCCESS: "Cập nhật thành công",
+        CHANGE_PASSWORD_SUCCESS: "Đổi mật khẩu thành công",
         UPDATE_ERROR: "Yêu cầu của bạn không thành công. Xin vui lòng thử lại!",
         TIME_END: "Tài khoản của bạn đã hết thời hạn đăng nhập vui lòng đăng nhập lại!",
         FAVORITE_PROJECT: "Các dự án yêu thích",
@@ -605,5 +614,22 @@ export default {
         PROJECT: "Dự án",
         APARTMENT: "Căn hộ",
         NEWS: "Tin tức"
-    }
+    },
+
+    RealEstate: {
+        TITLE: "Bài đăng bất động sản",
+        TITLE_LIST: "Danh sách bài đăng",
+        PRICE: "Giá",
+        NAME: 'Tiêu đề',
+        AREA: "Diện tích(m2)",
+        ATTRIBUTE: "Đặc điểm",
+        CATEGORY: "Loại bất động sản",
+        DESCRIPTION: "Mô tả",
+        IMAGE: "Hình ảnh",
+        CITY: "Tỉnh/Thành phố",
+        DISTRICT: "Quận/Huyện",
+        WARD: "Phường/Xã",
+        ADDRESS_LINE: "Chi tiết địa chỉ",
+        IS_HIGHLIGHT: "Bài đăng nổi bậc"
+    },
 };

@@ -94,7 +94,7 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
             "clickable": true,
         }
         const apartment: any = this.model.apartment || ({} as any);
-        console.log("apartment", apartment);
+        // console.log("apartment", apartment);
         const apartments: any[] = this.model.apartments || [];
         const apartmentPhotos: any[] = apartment.images || [];
         // const attrPremises: any[] = Helpers.getAttributes(apartment.attributes, Constants.DISPLAY_TYPE.PREMISES).apartmentAttributes || [];
@@ -231,11 +231,30 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
                                         <Text className="price-from">{Strings.Aparment.LISTED_PRICE}</Text>
                                         <img className="ml-1r" src={Resources.Icon.HELP} />
                                         <div className="ml-1r line-height-1 d-flex align-items-end">
-                                            <Grid className="mr-4">
-                                                {/* <CardPriceString number={[apartment.price || 0]} /> */}
-                                                {apartment.price}
-                                            </Grid>
-                                            {/* <CardPriceString classNumber="text-dark font-18 line-height-1" number={[(apartment.listPrice || 0) / (apartment.area || 1)]} unit={Strings.Common.SQUARE_METTER} /> */}
+                                            {
+                                                Number(apartment.price !== 0) ?
+                                                    <>
+                                                        <Grid className="mr-4">
+                                                            <CardPriceString number={[apartment.price || 0]} />
+                                                            {/* <Grid className="text-dark font-18 line-height-1">
+                                                            <span className={'pl-2 pr-2'}>
+                                                                {Number(apartment.price !== 0) ? `${apartment.price / 1000000000} ${Strings.Common.BILLION}` :  "Thỏa thuận"}
+                                                            </span>
+                                                        </Grid> */}
+                                                        </Grid>
+                                                        <CardPriceString classNumber="text-dark font-18 line-height-1" number={[(apartment.price || 0) / (apartment.area || 1)]} unit={Strings.Common.SQUARE_METTER} />
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <Grid className="mr-4">
+                                                            <Grid className="text-dark font-18 line-height-1">
+                                                                <span className={'pl-2 pr-2'}>
+                                                                    {"Thỏa thuận"}
+                                                                </span>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </>
+                                            }
                                         </div>
                                     </Grid>
 
@@ -615,8 +634,8 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
                                             key={index + "a"}
                                         >
                                             <CardApartment
-                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
-                                                onClickLike={() => {}}
+                                                onClick={() => this.controller.getDetail(apartment?.id)}
+                                                onClickLike={() => { }}
                                                 apartment={apartment}
                                             />
                                         </SwiperSlide>
@@ -632,7 +651,7 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
                         )}
                     </Grid>
                 </Grid>
-                
+
                 {/* Img Apartment */}
                 <ImgView imgList={this.model.listImg}
                     curImg={this.model.imageNumber}

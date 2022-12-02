@@ -8,6 +8,7 @@ import NewsService from "./NewsService";
 import FavoriteService from "./FavoriteService";
 import UserService from "./UserService";
 import SearchService from "./SearchService";
+import ProfileService from "./ProfileService";
 
 export {
     AuthService,
@@ -19,5 +20,6 @@ export {
     NewsService,
     FavoriteService,
     UserService,
-    SearchService
+    SearchService,
+    ProfileService
 };

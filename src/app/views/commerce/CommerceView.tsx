@@ -20,6 +20,7 @@ import SwiperCore, {
     Autoplay
   } from 'swiper';
   import Image from 'material-ui-image'
+import { CategoryTarget, CategoryType } from "../../../constants/Enums";
 
 SwiperCore.use([Pagination,  Autoplay]);
 
@@ -214,7 +215,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                         return (
                                             <SwiperSlide key={index + 'a'} className="swiper-card-project">
                                                 <CardApartment
-                                                    onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
+                                                    onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment._id}` })}
                                                     onClickLike={() => {}}
                                                     apartment={apartment}
                                                     voucherName={Strings.Common.VOUCHER_NAME}
@@ -225,7 +226,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=-1&target=0`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.HIGH_LIGHT}&target=${CategoryTarget.Sell}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -239,17 +240,18 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                         }
                     </Grid>
                 </Grid>
+
                 {/* resort */}
                 <Grid className="standard-frame" id={Constants.TYPE.RESORT}>
-                    {(this.model.listApartmentResort || []).length > 0 ? (
+                    {(this.model.listApartmentVillas || []).length > 0 ? (
                         <>
-                            <CardSliderAparment lengthCard={(this.model.listApartmentResort?.length || 0)} nameTitle={Strings.Common.PERSONAL_PROPERTY_RESORT}>
-                                {this.model.listApartmentResort?.map((apartment, index) => {
+                            <CardSliderAparment lengthCard={(this.model.listApartmentVillas?.length || 0)} nameTitle={Strings.Common.VILLAS}>
+                                {this.model.listApartmentVillas?.map((apartment, index) => {
                                     const apartmentPhotos: any[] = apartment.apartmentPhotos || [];
                                     return (
                                         <SwiperSlide key={index + 'a'} className="swiper-card-project">
                                             <CardApartment
-                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
+                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment._id}` })}
                                                 onClickLike={() => {}}
                                                 apartment={apartment}
                                                 voucherName={Strings.Common.VOUCHER_NAME}
@@ -260,14 +262,14 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=1&target=0`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.VILLAS}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
                         </>
                     )
                         :
-                        <CardSliderAparment lengthCard={1} nameTitle={Strings.Common.PERSONAL_PROPERTY_RESORT}>
+                        <CardSliderAparment lengthCard={1} nameTitle={Strings.Common.VILLAS}>
                             <Grid className="view-all-card">
                                 {Strings.Common.NOT_ITEM}
                             </Grid>
@@ -304,6 +306,45 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                     </Swiper>
 
                 </Grid> */}
+                
+                {/* office */}
+                <Grid className="bg-gold" id={Constants.TYPE.OFFICE}>
+                    <Grid className="standard-frame">
+                        {(this.model.listApartmentUrbanArea || []).length > 0 ? (
+                            <>
+                                <CardSliderAparment lengthCard={(this.model.listApartmentUrbanArea?.length || 0)} classNameTitle="text-white" nameTitle={Strings.Common.APARTMENT_URBAN_AREA}>
+                                    {this.model.listApartmentUrbanArea?.map((apartment, index) => {
+                                        const apartmentPhotos: any[] = apartment.apartmentPhotos || [];
+                                        return (
+                                            <SwiperSlide key={index + 'a'} className="swiper-card-project">
+                                                <CardApartment
+                                                    onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment._id}` })}
+                                                    onClickLike={() => {}}
+                                                    apartment={apartment}
+                                                    voucherName={Strings.Common.VOUCHER_NAME}
+                                                    remainDate={2}
+                                                />
+                                            </SwiperSlide>
+                                        );
+                                    })}
+                                </CardSliderAparment>
+                                <Grid className="w-100 d-flex justify-content-center">
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.APARTMENT_URBAN_AREA}&target=${CategoryTarget.Sell}`)}>
+                                        {Strings.Commerce.VIEW_ADD_PROJECT}
+                                    </button>
+                                </Grid>
+                            </>
+                        )
+                            :
+                            <CardSliderAparment lengthCard={1} classNameTitle="text-white" nameTitle={Strings.Common.APARTMENT_URBAN_AREA}>
+                                <Grid className="view-all-card">
+                                    {Strings.Common.NOT_ITEM}
+                                </Grid>
+                            </CardSliderAparment>
+                        }
+                    </Grid>
+                </Grid>
+
                 {/* house */}
                 <Grid className="standard-frame" id={Constants.TYPE.HOUSE}>
                     {(this.model.listApartmentHouse || []).length > 0 ? (
@@ -314,8 +355,8 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                     return (
                                         <SwiperSlide key={index + 'a'} className="swiper-card-project">
                                             <CardApartment
-                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
-                                                onClickLike={() => {}}
+                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment._id}` })}
+                                                onClickLike={() => { }}
                                                 apartment={apartment}
                                                 voucherName={Strings.Common.VOUCHER_NAME}
                                                 remainDate={2}
@@ -325,7 +366,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=0&target=0`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.APARTMENT_HOUSE}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
@@ -339,53 +380,17 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                         </CardSliderAparment>
                     }
                 </Grid>
-                {/* office */}
-                <Grid className="bg-gold" id={Constants.TYPE.OFFICE}>
-                    <Grid className="standard-frame">
-                        {(this.model.listApartmentOffice || []).length > 0 ? (
-                            <>
-                                <CardSliderAparment lengthCard={(this.model.listApartmentOffice?.length || 0)} classNameTitle="text-white" nameTitle={Strings.Common.PERSONAL_PROPERTY_OFFICE}>
-                                    {this.model.listApartmentOffice?.map((apartment, index) => {
-                                        const apartmentPhotos: any[] = apartment.apartmentPhotos || [];
-                                        return (
-                                            <SwiperSlide key={index + 'a'} className="swiper-card-project">
-                                                <CardApartment
-                                                    onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
-                                                    onClickLike={() => {}}
-                                                    apartment={apartment}
-                                                    voucherName={Strings.Common.VOUCHER_NAME}
-                                                    remainDate={2}
-                                                />
-                                            </SwiperSlide>
-                                        );
-                                    })}
-                                </CardSliderAparment>
-                                <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=2&target=0`)}>
-                                        {Strings.Commerce.VIEW_ADD_PROJECT}
-                                    </button>
-                                </Grid>
-                            </>
-                        )
-                            :
-                            <CardSliderAparment lengthCard={1} classNameTitle="text-white" nameTitle={Strings.Common.PERSONAL_PROPERTY_OFFICE}>
-                                <Grid className="view-all-card">
-                                    {Strings.Common.NOT_ITEM}
-                                </Grid>
-                            </CardSliderAparment>
-                        }
-                    </Grid>
-                </Grid>
+
                 {/* URBAN AREA */}
                 <Grid className="standard-frame" id={Constants.TYPE.URBAN_AREA}>
-                    {(this.model.listApartmentUrbanArea || []).length > 0 ? (
+                    {(this.model.listApartmentLand || []).length > 0 ? (
                         <>
-                            <CardSliderAparment lengthCard={(this.model.listApartmentUrbanArea?.length || 0)} nameTitle={Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}>
-                                {this.model.listApartmentUrbanArea?.map((apartment, index) => {
+                            <CardSliderAparment lengthCard={(this.model.listApartmentLand?.length || 0)} nameTitle={Strings.Common.LAND}>
+                                {this.model.listApartmentLand?.map((apartment, index) => {
                                     return (
                                         <SwiperSlide key={index + 'a'} className="swiper-card-project">
                                             <CardApartment
-                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment.id}` })}
+                                                onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${apartment._id}` })}
                                                 onClickLike={() => {}}
                                                 apartment={apartment}
                                                 voucherName={Strings.Common.VOUCHER_NAME}
@@ -396,14 +401,14 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=3&target=0`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.REAL_ESTATE_LAND}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
                         </>
                     )
                         :
-                        <CardSliderAparment lengthCard={1} nameTitle={Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}>
+                        <CardSliderAparment lengthCard={1} nameTitle={Strings.Common.LAND}>
                             <Grid className="view-all-card">
                                 {Strings.Common.NOT_ITEM}
                             </Grid>

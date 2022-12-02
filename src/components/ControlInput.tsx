@@ -1,20 +1,17 @@
-import React, {
-    PureComponent
-} from "react";
-import { Strings } from "../constants";
+import React, { useMemo } from "react";
 import { Helpers } from "../commons/utils";
 import "./ComponentStyles.css";
 import {
     FormControl,
-    OutlinedInput,
     InputLabel,
     InputAdornment,
     IconButton,
     OutlinedInputProps,
-    FormHelperText
+    FormHelperText,
+    OutlinedInput
 } from "@material-ui/core";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-
 interface IProps extends OutlinedInputProps {
     errorMessage?: string;
     notification?: any;
@@ -23,41 +20,63 @@ interface IProps extends OutlinedInputProps {
     pattern?: string;
     placeholder?: string;
     containerClassName?: string;
+    type?: string;
+    label?: string;
+    minRows?: number;
 }
 
-interface IState {
-    noti?: any;
-    errMessage?: string;
-    showPassword?: boolean;
-}
-
-export default class ControlInput extends PureComponent<IProps, IState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            noti: {
-                0: Strings.Validation.REQUIRED,
-                1: this.props.notification,
+const useStyles = makeStyles(() =>
+    createStyles({
+        root: {
+            '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]': {
+                padding: 0,
             },
-        };
+            '& .MuiInputLabel-outlined': {
+                transform: 'translate(14px,13px) scale(1)'
+            },
+            '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+                transform: 'translate(14px, -6px) scale(0.75)'
+            },
+            '& .MuiOutlinedInput-input': {
+                padding: '10.5px 14px !important'
+            }
+        },
+    }),
+);
+const ControlInput: React.FC<IProps> = (props: IProps) => {
+    const [showPassword, setShowPassword] = React.useState<boolean>(false);
+    const classes = useStyles();
+    const onChangeValue = (event: any) => {
+        if (props.onChangeValue && Helpers.isFunction(props.onChangeValue)) {
+            props.onChangeValue(event.target.value);
+        }
     }
 
-    _renderInput = () => {
-        if (this.props.secure) {
+    const onShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+    const onMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    }
+
+    const inputInstance = useMemo(() => {
+        if (props.secure) {
             return (
                 <OutlinedInput
-                    {...this.props}
-                    id="outlined-input"
-                    onChange={this.onChangeValue}
-                    type={this.state.showPassword ? "text" : "password"}
+                    {...props}
+                    draggable={true}
+                    id={`outlined-input-${new Date().getTime()}`}
+                    onChange={onChangeValue}
+                    type={showPassword ? "text" : "password"}
+                    //autoComplete="off"
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={this.onShowPassword}
-                                onMouseDown={this.onMouseDown}
+                                aria-label="toggle password visibilityOff"
+                                onClick={onShowPassword}
+                                onMouseDown={onMouseDown}
                                 edge="end">
-                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                {showPassword ? <Visibility /> : <VisibilityOff />}
                             </IconButton>
                         </InputAdornment>
                     }
@@ -66,57 +85,25 @@ export default class ControlInput extends PureComponent<IProps, IState> {
         }
         return (
             <OutlinedInput
-                {...this.props}
-                id="outlined-input"
-                onChange={this.onChangeValue}
+                {...props}
+                id={`outlined-input-${new Date().getTime()}`}
+                onChange={onChangeValue}
+            //autoComplete="off"
             />
         );
-    }
-    public render() {
-        return (
-            <FormControl
-                className={this.props.containerClassName}
-                fullWidth
-                variant="outlined"
-                error={(this.props.errorMessage || this.state.errMessage) ? true : false}>
-                <InputLabel htmlFor="outlined-input">{this.props.label}</InputLabel>
-                {this._renderInput()}
-                <FormHelperText id="outlined-input-error">{this.props.errorMessage || this.state.errMessage}</FormHelperText>
-            </FormControl>
-        );
+    }, [showPassword])
 
-    }
-
-    private onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.renderErrorMessage(Helpers.ensureString(event.target.value).trim());
-        if (this.props.onChangeValue && Helpers.isFunction(this.props.onChangeValue)) {
-            this.props.onChangeValue(event.target.value);
-        }
-    }
-
-    private onShowPassword = () => {
-        this.setState({
-            showPassword: !this.state.showPassword
-        });
-    }
-
-    private onMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    }
-
-    private renderErrorMessage = (data: string) => {
-        if (this.props.required && data === "") {
-            this.setState({
-                errMessage: this.state.noti[0],
-            });
-        } else if (data !== "" && !Helpers.isNullOrEmpty(this.props.pattern)) {
-            this.setState({
-                errMessage: this.state.noti[1],
-            });
-        } else {
-            this.setState({
-                errMessage: "",
-            });
-        }
-    }
+    return (
+        <FormControl
+            className={`${props.containerClassName} ${classes.root}`}
+            fullWidth
+            variant="outlined"
+            error={!Helpers.isNullOrEmpty(props.errorMessage)}>
+            <InputLabel htmlFor={`outlined-input-${new Date().getTime()}`}>{props.required ? `${props.label} *` : props.label}</InputLabel>
+            {inputInstance}
+            <FormHelperText id={`outlined-input-error-${new Date().getTime()}`}>{props.errorMessage}</FormHelperText>
+        </FormControl>
+    )
 }
+
+export default ControlInput;

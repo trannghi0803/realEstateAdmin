@@ -11,6 +11,7 @@ const Screens = {
     // Main
     // =========================================================================
     /** / */
+    ACTIVE_ACCOUNT: "/activeAccount",
     ADMIN: "/admin",
     SETTING: "/setting",
     PROFILE: "/profile",
@@ -41,6 +42,9 @@ const Screens = {
     NEWS_DETAIL: "/news/detail",
 
     FAVORITE: "/favorite",
+    CHANGE_PASSWORD: "/changePassword",
+    USER_SUBMIT_REAL_ESTATE: "/userSubmitRealEstate",
+    // MY_REAL_ESTATE: "/favorite",
     SEARCH: "/search"
 
 };

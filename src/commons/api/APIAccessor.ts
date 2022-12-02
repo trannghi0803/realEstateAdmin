@@ -2,7 +2,6 @@ import axios from "axios";
 
 import {
     Helpers,
-    IError,
     IResult,
 } from "../utils";
 import { Constants, Strings } from "../../constants";
@@ -84,7 +83,7 @@ export interface IRequest {
     headers?: any;
     contentType?: ContentType;
     onSuccess?: (result: IResult) => void;
-    onError?: (error: IError) => void;
+    onError?: (error: any) => void;
 }
 
 /**
@@ -148,7 +147,7 @@ class APIAccessor {
             request.onSuccess = (result: IResult) => {
                 resolve(result);
             };
-            request.onError = (error: IError) => {
+            request.onError = (error: any) => {
                 reject(error);
             };
             APIAccessor.instance.fetch(request);
@@ -166,7 +165,7 @@ class APIAccessor {
             request.onSuccess = (result: IResult) => {
                 resolve(result);
             };
-            request.onError = (error: IError) => {
+            request.onError = (error: any) => {
                 reject(error);
             };
             APIAccessor.instance.fetch(request);
@@ -188,7 +187,7 @@ class APIAccessor {
             request.onSuccess = (result: IResult) => {
                 resolve(result);
             };
-            request.onError = (error: IError) => {
+            request.onError = (error: any) => {
                 reject(error);
             };
             APIAccessor.instance.fetch(request);
@@ -206,7 +205,7 @@ class APIAccessor {
             request.onSuccess = (result: IResult) => {
                 resolve(result);
             };
-            request.onError = (error: IError) => {
+            request.onError = (error: any) => {
                 reject(error);
             };
             APIAccessor.instance.fetch(request);
@@ -224,7 +223,7 @@ class APIAccessor {
             request.onSuccess = (result: IResult) => {
                 resolve(result);
             };
-            request.onError = (error: IError) => {
+            request.onError = (error: any) => {
                 reject(error);
             };
             APIAccessor.instance.fetch(request);
@@ -273,7 +272,8 @@ class APIAccessor {
             this.onAfterCallback(request, response);
             this.onSuccessCallback(request, response);
         }).catch((error: any) => {
-            const response = error ? error.response : null;
+            console.log("errrrr", error);
+            const response = error ? error : null;
             this.onAfterCallback(request, response, error);
             this.onErrorCallback(request, response, error);
         });
@@ -398,15 +398,16 @@ class APIAccessor {
         } else {
             // const messages: any = Strings.Message;
             // const message = messages[data.code] || data.message || messages.NOT_DEFINE;
-            const error = {
-                code: response.status,
-                // message
-            };
+            // const error = {
+            //     code: response.status,
+            //     // message
+            // };
             // if (!Helpers.isNullOrEmpty(data.code) && (data.code.indexOf("99") === 0)) {
             //     DeviceEventEmitter.emit(Constants.EventName.COMMON_ERROR, error);
             // }
             if (Helpers.isFunction(request.onError)) {
-                request.onError(error);
+                console.log("response errr", response)
+                request.onError(response);
             }
         }
     }
@@ -428,11 +429,12 @@ class APIAccessor {
         // }
         // Error handler
         if (error) {
-            const err = {
-                code: '400',
-                message: 'err'
-            }
-            request.onError!(err);
+            // const err = {
+            //     code: '400',
+            //     message: 'err'
+            // }
+            console.log("API error", error);
+            request.onError!(error);
             // if (error.response) {
             //     if (error.response.status === Constants.ApiCode.INTERNAL_SERVER) {
             //         swal("Đã có lỗi xảy ra!", { icon: "error" });
@@ -451,7 +453,7 @@ class APIAccessor {
             //             request.onError({
             //                 code: Constants.ApiCode.UNKNOWN_NETWORK,
             //                 // message: messages[Constants.ApiCode.UNKNOWN_NETWORK]
-            //             } as IError);
+            //             } as any);
             //         }
             //         return;
             //     }
@@ -468,7 +470,7 @@ class APIAccessor {
             //         request.onError({
             //             code: Constants.ApiCode.CONNECTION_TIMEOUT,
             //             // message: messages[Constants.ApiCode.CONNECTION_TIMEOUT]
-            //         } as IError);
+            //         } as any);
             //     }
             //     return;
             // }
@@ -491,7 +493,7 @@ class APIAccessor {
             //             request.onError({
             //                 code: Constants.ApiCode.INTERNAL_SERVER,
             //                 message: response.data,
-            //             } as IError);
+            //             } as any);
             //         }
             //         return;
             //     }

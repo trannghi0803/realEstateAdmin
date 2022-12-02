@@ -815,6 +815,7 @@
 .scope-under{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .scope-over{
     background: white;
@@ -886,6 +887,15 @@
     padding: 0.2rem 0.5rem;
     border-radius: 25px;
     font-size: 2.2rem;
+    color: #C98511;
+    align-items: center;
+    display: flex
+}
+.menu-post-user{
+    border: none;
+    margin: 1rem;
+    padding: 0.6rem;
+    border-radius: 25px;
     color: #C98511;
     align-items: center;
     display: flex
@@ -1129,6 +1139,10 @@
     margin: 0;
     display: flex;
     cursor: pointer;
+}
+.overflow-scroll-menu {
+    max-height: 220px;
+    overflow: auto;
 }
 .wsmenu-list>li{
     list-style: none;

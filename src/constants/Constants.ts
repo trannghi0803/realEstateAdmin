@@ -43,24 +43,36 @@ const Constants = {
      */
     ApiPath: {
         // auth
-        LOGIN: "/Login",
+        LOGIN: "Login",
         LOGOUT: "/Logout",
-        REGISTER: "/register",
+        REGISTER: "register",
+        ACTIVE_ACCOUNT: "active",
         REFRESH_TOKEN: "/RefreshToken",
         UPLOAD_FILE: "file/upload",
         GET_USER_INFO: "Account/GetUserInfo",
         CHECK_ACCOUNT: "/Account/CheckAccount",
-        CHANGE_PASSWORD: "/Account/ChangePassword",
-
+        
         CATEGORY: "/category",
         REAL_ESTATE: "/realEstate",
-
+        REAL_ESTATE_BY_USER: "/realEstate/getByUser",
+        REAL_ESTATE_SUBMIT: "/userSubmitRealEstate",
+        REAL_ESTATE_UPDATE: "/userUpdateRealEstate",
+        REAL_ESTATE_GET_BY_CATEGORY: "/realEstate/getByCategory/",
+        REAL_ESTATE_GET_BY_HIGHLIGHT: "/realEstate/getByHighLight/",
+        
         ADDRESS: {
             GET_PROVINCE: "/Address/getProvinces",
             GET_DISTRICT_BY_PROVINCE: "/Address/getDistrictsByProvinceCode/",
             GET_WARD_BY_DISTRICT: "/Address/getWardsByDistrictCode/",
         },
-        NEWS: "/news"
+        NEWS: "/news",
+        NEWS_GET_PAGED: "/news/getPaged",
+
+        getProfile: "user/userProfile",
+        updateProfile: "user/updateUserProfile",
+        FORGOT_PASSWORD: "user/forgotPassword",
+        CHANGE_PASSWORD: "user/changePassword",
+
     },
 
     /**
@@ -190,7 +202,7 @@ const Constants = {
     DEBOUNCE_TIME: 400,
     MAX_AVATAR_FILE_SIZE: 5 * 1024 * 1024, // 5MB
 
-    ROW_PER_PAGE: 10,
+    ROW_PER_PAGE: 12,
     DefaultLanguage: "vi",
 
     DateFormat: {
@@ -227,7 +239,12 @@ const Constants = {
 
     FACEBOOK: {
         APP_ID: "262963035618905"
-    }
+    },
+
+    APARTMENT_HOUSE: "6384f89195da3df571238b58", //BĐS nhà Riếng
+    APARTMENT_URBAN_AREA: "6382f20425c4bc3d490ae2a1", //BĐS Căn hộ chung cư
+    REAL_ESTATE_LAND: "6382f22925c4bc3d490ae2b8", //BĐS Đất nền
+    VILLAS: "6382f24425c4bc3d490ae2cb", //BĐS biệt thụ liền kề
 };
 
 export default Constants;

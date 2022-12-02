@@ -26,6 +26,7 @@ import 'swiper/components/navigation/navigation.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 import { Helpers } from "../../../commons/utils";
 import HomeBanner from "./HomeBanner";
+import { CardApartment } from "../../../components";
 
 SwiperCore.use([Pagination, Navigation, Autoplay, EffectFade]);
 
@@ -44,33 +45,25 @@ export default class HomeView extends BaseView<HomeController, HomeModel, HomeSe
                     {/* Project Hightlight */}
                     <Grid className="bg-green">
                         <Grid className="standard-frame">
-                            {(this.model.projects || []).length > 0 ?
-                                <CardSliderAparment nameTitle={Strings.Home.PROJECT_HIGHTLIGHT} lengthCard={(this.model.projects?.length || 0) + 1}>
-                                    {this.model.projects?.map((item, index) => {
-                                        const projectPhotos: any[] = item.projectPhotos || [];
+                            {(this.model.listItemHighLight || []).length > 0 ?
+                                <CardSliderAparment nameTitle={Strings.Home.REALESTE_HIGHTLIGHT} lengthCard={(this.model.listItemHighLight?.length || 0) + 1}>
+                                    {this.model.listItemHighLight?.map((item, index) => {
+                                        // const projectPhotos: any[] = item.projectPhotos || [];
                                         return (
                                             <SwiperSlide key={index + 'a'}
                                                 className="swiper-card-project">
-                                                <CardProject
-                                                    maxPrice={item.maxPrice || 0}
-                                                    imageProject={projectPhotos[0]?.photoUrl}
-                                                    minPrice={item.minPrice || 0}
-                                                    nameProject={Helpers.getName(item.name, item.nameContents)}
-                                                    typeProject={item.type}
-                                                    id={item.id || ''}
-                                                    onClick={() => {this.history.push({ pathname: Screens.PROJECT, search: `?&id=${item.id}` })}}
-                                                    onClickLike={() => {}}
-                                                    area={item.siteArea}
-                                                    status={item.status}
-                                                    isHighlight={item.isHighlight}
-                                                    addressFull={item.addressFull}
-                                                    scale={item.scale}
+                                                <CardApartment
+                                                    onClick={() => this.history.push({ pathname: Screens.APARTMENT, search: `?&id=${item.id}` })}
+                                                    onClickLike={() => { }}
+                                                    apartment={item}
+                                                    voucherName={Strings.Common.VOUCHER_NAME}
+                                                    remainDate={2}
                                                 />
                                             </SwiperSlide>
                                         );
                                     })}
                                     <SwiperSlide className="view-all-card" >
-                                        <Link color="inherit" className="cursor-pointer" href={`${Screens.LISTING_PROJECT}?types=-1`}>
+                                        <Link color="inherit" className="cursor-pointer" href={`${Screens.LISTING_APARTMENT}?types=-1`}>
                                             {Strings.Common.VIEW_ALL}
                                         </Link>
                                     </SwiperSlide>

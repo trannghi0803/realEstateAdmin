@@ -6,6 +6,7 @@ import ApartmentModel from "./ApartmentModel";
 import ListingModel from "./ListingModel";
 import NewsModel from "./NewsModel";
 import SearchModel from "./SearchModel";
+import ProfileModel from "./ProfileModel";
 
 export {
     AuthModel,
@@ -15,5 +16,6 @@ export {
     ApartmentModel,
     ListingModel,
     NewsModel,
-    SearchModel
+    SearchModel,
+    ProfileModel
 };

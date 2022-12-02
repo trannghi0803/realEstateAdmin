@@ -60,10 +60,18 @@ export default class NewsView extends BaseView<NewsController, NewsModel, NewsSe
                             })}
                         </Grid>
                     </Grid>
-                    {(this.model.totalNews || 0) > 0 ?
+                    {/* {(this.model.totalNews || 0) > 0 ?
                         <Grid className="w-100 d-flex justify-content-center mt-4 mb-4">
                             <Pagination count={this.model.totalNews} page={this.model.page} onChange={this.controller.handleChangePagination} />
                         </Grid> : ''
+                    } */}
+                    {(this.model.listNews || [])?.length > 0 ?
+                        <Grid className="w-100 wrap-pagination">
+                            <Pagination className="custom-pagination" count={this.model.totalPages} page={this.model.currentPage} onChange={this.controller.handleChangePagination} />
+                        </Grid> :
+                        <Grid className="w-100 wrap-pagination">
+                            Không có dữ liệu
+                        </Grid>
                     }
                 </Grid>
                 {/* <Modal

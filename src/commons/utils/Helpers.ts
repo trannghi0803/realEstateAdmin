@@ -2,6 +2,7 @@ import moment from "moment";
 import swal from "@sweetalert/with-react";
 import { Constants,  Screens, Strings } from "../../constants";
 import { IOptionSelect,  IValueContent } from "./Interface";
+import { CategoryTarget, CategoryType } from "../../constants/Enums";
 
 /**
  * Helpers.ts
@@ -393,11 +394,11 @@ const Helpers = {
     },
     getOptionTypeProject: () => {
         return [
-            { value: '-1', label: Strings.Home.PERSONAL_PROPERTY_HIGHTLIGHT },
-            { value: Constants.TYPE.RESORT, label: Strings.Home.PERSONAL_PROPERTY_RESORT },
-            { value: Constants.TYPE.HOUSE, label: Strings.Home.PERSONAL_PROPERTY_HOUSE },
-            { value: Constants.TYPE.OFFICE, label: Strings.Home.PERSONAL_PROPERTY_OFFICE },
-            { value: Constants.TYPE.URBAN_AREA, label: Strings.Home.PERSONAL_PROPERTY_URBAN_AREA },
+            { value: `${CategoryType.HIGH_LIGHT}`, label: Strings.Home.PERSONAL_PROPERTY_HIGHTLIGHT },
+            { value: `${CategoryType.VILLAS}`, label: Strings.Common.VILLAS },
+            { value: `${CategoryType.APARTMENT_URBAN_AREA}`, label: Strings.Common.APARTMENT_URBAN_AREA },
+            { value: `${CategoryType.APARTMENT_HOUSE}`, label: Strings.Common.PERSONAL_PROPERTY_HOUSE },
+            { value: `${CategoryType.REAL_ESTATE_LAND}`, label: Strings.Common.LAND },
         ] as IOptionSelect[]
     },
     getOptionStatusProject: () => {
@@ -438,8 +439,8 @@ const Helpers = {
     },
     getTarget: () => {
         return [
-            { value: '0', label: Strings.Home.FOR_RENT },
-            { value: '1', label: Strings.Home.SALE },
+            { value: `${CategoryTarget.Rent}`, label: Strings.Home.FOR_RENT },
+            { value: `${CategoryTarget.Sell}`, label: Strings.Home.SALE },
         ] as IOptionSelect[]
     },
     getTypeNews: () => {

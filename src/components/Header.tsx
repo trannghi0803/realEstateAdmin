@@ -6,18 +6,19 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { useEffect, useState } from "react";
 import { Helpers, IOptionSelect } from "../commons/utils";
-import { GlobalState } from "../stores/GlobalState";
+import { clearGlobalState, GlobalState } from "../stores/GlobalState";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { signinRedirect, signoutRedirectCallback } from "../config";
 import CloseIcon from '@material-ui/icons/Close';
 import { ProcessSlider } from ".";
-import { HomeService } from "../app/services";
+import { HomeService, UserService } from "../app/services";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { makeStyles } from '@material-ui/core/styles';
 import ControlAutocomplete from "./ControlAutocomplete";
 import SelectCheckbox from "./SelectIcon";
 import CommerceService from "../app/services/CommerceService";
 import Cookies from 'universal-cookie';
+import BaseService from "../app/services/BaseService";
 
 const useStyles = makeStyles({
     menuDropdownSearch: {
@@ -169,7 +170,7 @@ export default function Header(this: any, props: IProps) {
     const [showSearch, setShowSearch] = React.useState<boolean>(false);
     const optionTarget: Array<any> = Helpers.getTarget();
     const optionType: IOptionSelect[] = Helpers.getOptionTypeProject();
-    const optionProvince: IOptionSelect[] = Helpers.getProvince();
+    const [optionProvince, setOptionProvince] = React.useState<IOptionSelect[]>([]);
     const optionStatus: IOptionSelect[] = Helpers.getOptionStatusProject();
     const location = useLocation();
     const [optionDistrict, setOptionDistrict] = React.useState<Array<any>>([]);
@@ -195,6 +196,20 @@ export default function Header(this: any, props: IProps) {
         optionProvince.forEach(async (city) => {
             codeList.push(city.value)
         });
+
+        let listProvince: IOptionSelect[] = [];
+
+        // const cityList = await new BaseService().getProvince();
+        // cityList?.map((el: any) => {
+        //     listProvince.push({
+        //         label: el.Name,
+        //         value: el.Code
+        //     })
+        // })
+        // console.log("cityList", cityList)
+        // // GlobalState.listProvinceList(cityList);
+        // setOptionProvince(listProvince)
+
         const params = new URLSearchParams;
         params.append('Orderby', 'apartment.isHighlight DESC')
         params.append('PageSize', '15');
@@ -209,8 +224,23 @@ export default function Header(this: any, props: IProps) {
         if (location.pathname !== Screens.LISTING_APARTMENT && location.pathname !== Screens.LISTING_PROJECT) {
             window.addEventListener("scroll", toggleVisibility);
         }
-
+        getProvince();
     }, []);
+
+    const getProvince = async () => {
+        let listProvince: IOptionSelect[] = [];
+
+        const cityList = await new BaseService().getProvince();
+        cityList?.map((el: any) => {
+            listProvince.push({
+                label: el.Name,
+                value: el.Code
+            })
+        })
+        // console.log("cityList", cityList)
+        GlobalState.setListProvinceList(listProvince);
+        setOptionProvince(listProvince)
+    }
 
     const handleClose = (value: any, key: number) => {
         let filterObj: any = {
@@ -301,6 +331,17 @@ export default function Header(this: any, props: IProps) {
         }
     }
 
+    const handleSubmitRealEstate = () => {
+        const isAuthenticated = GlobalState.isAuthenticated;
+        if (isAuthenticated) {
+            history.push(Screens.USER_SUBMIT_REAL_ESTATE)
+        } else {
+            Helpers.showConfirmAlert("Vui lòng đăng nhập để tiếp tục", () => {
+                GlobalState.setModalLogin(true)
+            })
+        }
+    }
+
     const getUrlParams = (keys: string[]): any => {
         const params = new URLSearchParams(window.location.search);
         let datas: { [key: string]: string | undefined } = {};
@@ -339,36 +380,39 @@ export default function Header(this: any, props: IProps) {
         if (!Helpers.isNullOrEmpty(GlobalState.filterObj?.maxArea)) {
             params.append('maxArea', GlobalState.filterObj?.maxArea)
         }
-        if (location.pathname === Screens.LISTING_APARTMENT) {
-            history.push({
-                pathname: Screens.LISTING_APARTMENT,
-                search: `?${params.toString()}`,
-            });
-        } else {
-            history.push({
-                pathname: Screens.LISTING_PROJECT,
-                search: `?${params.toString()}`,
-            });
-        }
+        // if (location.pathname === Screens.LISTING_APARTMENT) {
+        history.push({
+            pathname: Screens.LISTING_APARTMENT,
+            search: `?${params.toString()}`,
+        });
+        // } else {
+        //     history.push({
+        //         pathname: Screens.LISTING_PROJECT,
+        //         search: `?${params.toString()}`,
+        //     });
+        // }
     }
 
     const logout = () => {
-        const cookies = new Cookies();
+        // const cookies = new Cookies();
         Helpers.showConfirmAlert(
             Strings.Header.LOGOUT_CONFIRM_MESSAGE,
             async () => {
                 try {
-                    const result = await signoutRedirectCallback();
-                    cookies.remove(Constants.StorageKeys.TOKEN, { path: '/' })
-                    GlobalState.setUser();
+                    GlobalState.showLoading();
+                    const result = await new UserService().logout();
+                    //if (result?.statusCode === Constants.ApiCode.SUCCESS) {
+                    // sessionStorage.clear();
+                    clearGlobalState();
                     setKey(key => key + 1);
-                    if (result.error) {
-                        return;
-                    }
+                    history.push(Screens.HOME);
+                    // }
+                    GlobalState.hideLoading();
                 } catch (error) {
+                    GlobalState.hideLoading();
                     // if (error) {
                     //     const message = error?.message?.Message || Strings.Message.ERROR;
-                    //     Helpers.showAlert(message, "error");
+                    Helpers.showAlert("Có lỗi xảy ra, vui lòng thử lại!", "error");
                     // }
                 }
             }
@@ -388,7 +432,7 @@ export default function Header(this: any, props: IProps) {
         GlobalState.setModalLogin(false);
         await signinRedirect();
     }
-    const renderLanguage =  () => {
+    const renderLanguage = () => {
         switch (GlobalState.language) {
             case Constants.Language.VN:
                 return (
@@ -467,19 +511,22 @@ export default function Header(this: any, props: IProps) {
                                         <Grid className="item-menu-over">
                                             {Strings.Header.LOCATION}
                                             <Grid className="value-filter">
-                                                {GlobalState.filterObj?.province ?
-                                                    <>
-                                                        {`${Helpers.getCodeName('province', GlobalState.filterObj?.province)}${districtName ? "/" + districtName : ""}`}
-                                                        <CloseIcon className="icon-close-value" onClick={() => {
-                                                            GlobalState.setFilter({ ...GlobalState.filterObj, province: undefined, district: undefined });
-                                                            setDistrictName(''); setKey(key => key + 1)
-                                                        }} />
-                                                    </>
-                                                    : Strings.Header.PROVINCE_DISTRICT_WARD
+                                                {
+                                                    GlobalState.filterObj?.province ?
+                                                        <>
+                                                            {optionProvince?.find(el => el.value === GlobalState.filterObj?.province)?.label}
+                                                            <CloseIcon className="icon-close-value" onClick={() => {
+                                                                GlobalState.setFilter({ ...GlobalState.filterObj, province: undefined, district: undefined });
+                                                                setDistrictName(''); setKey(key => key + 1)
+                                                            }} />
+                                                        </>
+                                                        :
+                                                        Strings.Header.PROVINCE_DISTRICT_WARD
                                                 }
+                                                {/* {Strings.Header.PROVINCE_DISTRICT_WARD} */}
                                             </Grid>
                                         </Grid>
-                                        <ul className="wsmenu-submenu">
+                                        <ul className="wsmenu-submenu overflow-scroll-menu">
                                             {optionProvince?.map((item, index) => {
                                                 return (
                                                     <li
@@ -488,7 +535,7 @@ export default function Header(this: any, props: IProps) {
                                                         className={`${GlobalState.filterObj?.province === item.value ? 'drop-item-active' : ''} drop-items-yellow`}
                                                     >
                                                         {item.label}
-                                                        <ul className="wsmenu-submenu-1 list-container">
+                                                        {/* <ul className="wsmenu-submenu-1 list-container">
                                                             {addressDataList.find((a: any) => a.code === item.value)?.provinceList.map((province: any, index: number) => {
                                                                 return (
                                                                     <li
@@ -504,7 +551,7 @@ export default function Header(this: any, props: IProps) {
                                                                     </li>
                                                                 )
                                                             })}
-                                                        </ul>
+                                                        </ul> */}
                                                     </li>
                                                 )
                                             })}
@@ -634,16 +681,16 @@ export default function Header(this: any, props: IProps) {
                                             </ul>
                                         </li>
                                         <li >
-                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.RESORT}`}>{Strings.Common.PERSONAL_PROPERTY_RESORT}</Link>
+                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.RESORT}`}>{Strings.Common.VILLAS}</Link>
+                                        </li>
+                                        <li >
+                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.OFFICE}`}>{Strings.Common.APARTMENT_URBAN_AREA}</Link>
                                         </li>
                                         <li >
                                             <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.HOUSE}`}>{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
                                         </li>
                                         <li >
-                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.OFFICE}`}>{Strings.Common.PERSONAL_PROPERTY_OFFICE}</Link>
-                                        </li>
-                                        <li >
-                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.URBAN_AREA}`}>{Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}</Link>
+                                            <Link className="drop-items-yellow" to={`/commerce?type=${Constants.TYPE.URBAN_AREA}`}>{Strings.Common.LAND}</Link>
                                         </li>
                                     </ul>
                                 </li>
@@ -668,7 +715,12 @@ export default function Header(this: any, props: IProps) {
                                     <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={commonSearch} />
                                 </Grid>
                             </Grid>
-                            <ul className="wsmenu-list">
+                            {/* <Grid className="dropdown"> */}
+                            <button className="menu-post-user" onClick={handleSubmitRealEstate}>
+                                {"Đăng bài"}
+                            </button>
+                            {/* </Grid> */}
+                            {/* <ul className="wsmenu-list">
                                 <li className="menu-header-ancestor flag-header language">
                                     {renderLanguage()}
                                     <ul className="wsmenu-submenu menu-language">
@@ -677,7 +729,7 @@ export default function Header(this: any, props: IProps) {
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
+                            </ul> */}
                             <Grid className="dropdown">
                                 <button className="menu-header-user" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <MenuIcon className="font-28" />
@@ -687,7 +739,8 @@ export default function Header(this: any, props: IProps) {
                                     {GlobalState.user ?
                                         <>
                                             <Grid className="drop-items-yellow" onClick={() => history.push(Screens.PROFILE)}>{Strings.Profile.PROFILE}</Grid>
-                                            <Grid className="drop-items-yellow" onClick={() => history.push(Screens.FAVORITE)}>{Strings.Common.FAVORITE}</Grid>
+                                            <Grid className="drop-items-yellow" onClick={() => history.push(Screens.FAVORITE)}>{Strings.Common.YOUR_REAL_ESTATE}</Grid>
+                                            <Grid className="drop-items-yellow" onClick={() => history.push(Screens.CHANGE_PASSWORD)}>{Strings.Common.CHANGE_PASSWORD}</Grid>
                                             <Grid className="drop-items-yellow" onClick={logout}> {Strings.Common.LOGOUT}</Grid>
                                         </>
                                         :
@@ -774,16 +827,16 @@ export default function Header(this: any, props: IProps) {
                                     })}
                                 </Collapse>
                                 <Grid className={classes.submenu}>
-                                    <Link to="/commerce?type=0">{Strings.Common.PERSONAL_PROPERTY_RESORT}</Link>
+                                    <Link to="/commerce?type=0">{Strings.Common.VILLAS}</Link>
+                                </Grid>
+                                <Grid className={classes.submenu}>
+                                    <Link to="/commerce?type=2">{Strings.Common.APARTMENT_URBAN_AREA}</Link>
                                 </Grid>
                                 <Grid className={classes.submenu}>
                                     <Link to="/commerce?type=1">{Strings.Common.PERSONAL_PROPERTY_HOUSE}</Link>
                                 </Grid>
                                 <Grid className={classes.submenu}>
-                                    <Link to="/commerce?type=2">{Strings.Common.PERSONAL_PROPERTY_OFFICE}</Link>
-                                </Grid>
-                                <Grid className={classes.submenu}>
-                                    <Link to="/commerce?type=3">{Strings.Common.PERSONAL_PROPERTY_URBAN_AREA}</Link>
+                                    <Link to="/commerce?type=3">{Strings.Common.LAND}</Link>
                                 </Grid>
                             </Collapse>
                         </Grid>
@@ -802,6 +855,7 @@ export default function Header(this: any, props: IProps) {
                         {GlobalState.user ?
                             <>
                                 <Grid className={classes.label} onClick={() => history.push(Screens.PROFILE)}>{Strings.Profile.PROFILE}</Grid>
+                                <Grid className={classes.label} onClick={() => history.push(Screens.FAVORITE)}>{Strings.Common.YOUR_REAL_ESTATE}</Grid>
                                 <Grid className={classes.label} onClick={logout}> {Strings.Common.LOGOUT}</Grid>
                             </>
                             :
@@ -814,16 +868,20 @@ export default function Header(this: any, props: IProps) {
                                 </Grid>
                             </Grid>
                         }
-                          <Grid className={`${classes.boxInputFind} mb-4 mt-3 w-75`}>
+                        <Grid className={`${classes.boxInputFind} mb-4 mt-3 w-75`}>
                             <input onKeyDown={onKeyDownEnter} defaultValue={valueSearch} onChange={(event) => setValueSearch(event.target.value)} className={classes.inputFind} type="text" placeholder="Tìm kiếm..." />
                             <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={commonSearch} />
-                         </Grid>
-                        <Grid className={classes.language}>
-                            <Grid className="flag-header justify-content-center">
-                                <img src={Resources.Images.FLAG.VN} onClick={() => { GlobalState.setLanguage(Constants.Language.VN); window.location.reload() }} />
-                            </Grid>
                         </Grid>
-                      
+                        {/* <Grid className={classes.language}> */}
+                        {/* <Grid className="flag-header justify-content-center">
+                                <img src={Resources.Images.FLAG.VN} onClick={() => { GlobalState.setLanguage(Constants.Language.VN); window.location.reload() }} />
+                            </Grid> */}
+                        <button className="menu-post-user" onClick={handleSubmitRealEstate}>
+                            {"Đăng bài"}
+                        </button>
+                        {/* </Grid> */}
+
+
                     </Grid>
                 </Grid>
             </Collapse>

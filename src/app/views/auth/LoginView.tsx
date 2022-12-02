@@ -24,13 +24,13 @@ AuthService
 	}
 
   	public renderPage() {
-		const user: IUser = GlobalState.user;
-		if (user.access_token) {
-			if (!user) {
-				GlobalState.setUser(true);
-			}
-		return <Redirect to={Screens.ADMIN} />;
-		}
+		// const user: IUser = GlobalState.user;
+		// if (user.access_token) {
+		// 	if (!user) {
+		// 		GlobalState.setUser(true);
+		// 	}
+		// return <Redirect to={Screens.ADMIN} />;
+		// }
 		return (
 		<div className="d-flex align-items-center justify-content-center">
 			<div className="login-form">

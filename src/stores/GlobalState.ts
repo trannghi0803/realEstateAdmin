@@ -13,9 +13,11 @@ const Model = types
     }));
 const Global = types
     .model("session", {
+        isAuthenticated: false,
         setting: types.frozen(),
         isShowLoading: false,
         isOpenModalLogin: false,
+        isOpenModalForgotPassword: false,
         isOpenModalRegister: false,
         user: types.frozen(),
         language: types.frozen(),
@@ -25,8 +27,12 @@ const Global = types
         isLoadSplash: true,
         listProvinceList: types.frozen(),
         contacts: types.frozen(),
+        userInfo: types.frozen(),
     })
     .actions((self) => ({
+        setAuthenticateStatus(isAuthenticated: boolean) {
+            self.isAuthenticated = isAuthenticated;
+        },
         setSetting(setting: any) {
             self.setting = setting;
         },
@@ -51,6 +57,9 @@ const Global = types
         setModalLogin(value: boolean){
             self.isOpenModalLogin = value
         },
+        setModalForgotPassword(value: boolean) {
+            self.isOpenModalForgotPassword = value
+        },
         setModalRegister(value: boolean){
             self.isOpenModalRegister = value
         },
@@ -65,11 +74,14 @@ const Global = types
         },
         setContacts(value: any){
             self.contacts = value
-        }
+        },
+        setUserInfo(userInfo: any) {
+            self.userInfo = userInfo;
+        },
     }));
 
 // Don"t remove !!!
-const sessionStorageState = sessionStorage.getItem(Constants.StorageKeys.GLOBAL_STATE);
+const sessionStorageState = localStorage.getItem(Constants.StorageKeys.GLOBAL_STATE);
 const initialState = sessionStorageState !== null ? JSON.parse(sessionStorageState) : {};
 
 function createGlobalState(snapshot: any) {
@@ -82,7 +94,7 @@ function createGlobalState(snapshot: any) {
     store = Global.create(snapshot);
     // connect local storage
     snapshotListenerDestroyer = onSnapshot(store, (snapshot) =>
-        sessionStorage.setItem(Constants.StorageKeys.GLOBAL_STATE, JSON.stringify(snapshot))
+        localStorage.setItem(Constants.StorageKeys.GLOBAL_STATE, JSON.stringify(snapshot))
     )
   
     return store;
@@ -93,6 +105,7 @@ let GlobalState = createGlobalState(initialState);
 
 export function clearGlobalState() {
     GlobalState = createGlobalState({});
+    localStorage.clear();
 }
 
 export {

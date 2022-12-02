@@ -16,7 +16,7 @@ class ListingModel extends BaseModel {
     valueCheckedProject?: any;
     valueLocation?: any;
     openModal?: boolean;
-    listApartment?: IApartment[];
+    listApartment?: any[];
     projects?: any[] = [];
    
     onScrollBottom?: boolean = false;

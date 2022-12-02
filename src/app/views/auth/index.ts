@@ -1,6 +1,6 @@
-import LoginView from "./LoginView";
+// import LoginView from "./LoginView";
 import CallbackView from "./CallbackView";
 export {
-    LoginView,
+    // LoginView,
     CallbackView
 };

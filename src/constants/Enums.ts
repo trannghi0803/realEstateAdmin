@@ -64,3 +64,32 @@ export enum TYPE_SEARCH{
     APARTMENT = 1,
     NEWS = 2
 }
+
+export enum IsHighLight {
+    False = 0,
+    True = 1
+}
+
+export enum CategoryType {
+    APARTMENT_HOUSE = 0,
+    APARTMENT_URBAN_AREA = 1,
+    REAL_ESTATE_LAND = 2,
+    VILLAS = 3,
+    HIGH_LIGHT = 4
+}
+
+export enum RealEstateType {
+    Create = 1,
+    Crawl = 2
+}
+
+export enum RealEstateStatus {
+    Active = 1,
+    Inactive = 0
+}
+
+export enum CategoryTarget {
+    Sell = 0,
+    Rent = 1
+}
+

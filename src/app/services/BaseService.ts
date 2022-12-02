@@ -23,7 +23,17 @@ class BaseService {
         })
         return result.data;
     }
-    
+
+    public uploadImage = async (file: File) => {
+        const form_data = new FormData();
+        form_data.append('file', file, file.name);
+
+        const result = await this.api.postFormData({
+            path: Constants.ApiPath.UPLOAD_FILE,
+            data: form_data
+        });
+        return result.data;
+    }
 }
 
 export default BaseService;

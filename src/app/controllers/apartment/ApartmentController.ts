@@ -9,7 +9,7 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
     constructor(props: any) {
         super(props, ApartmentModel, ApartmentService);
     }
-    objFavourite: any;
+    
     async onStarted() {
         try {
             this.showLoading()
@@ -20,7 +20,7 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
             } else {
                 let apartment: any = {};
                 let apartments: any = [];
-                let dataDetail = await this.getDetail(id)
+                await this.getDetail(id)
 
                 window.addEventListener("scroll", () => { this.showProperty(); this.setEventButtonfloating() });
                 const img = apartment.images || [];
@@ -31,8 +31,6 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
                     })
                 });
                 this.setModel({
-                    apartment: dataDetail?.apartment,
-                    apartments: dataDetail?.apartments,
                     id: id,
                     listImg
                 });
@@ -59,17 +57,17 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
             this.setModel({ id })
             this.showLoading();
             const apartment = await this.service.getDetail(id || this.model.id || "") || {};
-            const apartments = await this.getListApartment();
-            
-            // this.setModel({
-            //     apartment: apartment,
-            //     renderKey: Date.now()
-            //     // apartments: apartments.result.items,
-            // });
+            const apartments = await this.getListApartment(apartment?.category, id);
+          
             this.history.replace({ pathname: Screens.APARTMENT, search: `?&id=${id}` })
             this.hideLoading();
             window.scrollTo(0, 0)
-            return {apartment, apartments}
+            this.setModel({
+                apartment,
+                apartments,
+                id: id,
+            });
+            // return {apartment, apartments}
         } catch (error) {
             this.hideLoading();
         }
@@ -114,11 +112,11 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
                 menuIndex: 0
             })
         }
-        // if (document.documentElement.scrollTop >= scrollToEl2 && document.documentElement.scrollTop < scrollToEl3) {
-        //     this.setModel({
-        //         menuIndex: 1
-        //     })
-        // }
+        if (document.documentElement.scrollTop >= scrollToEl2) {
+            this.setModel({
+                menuIndex: 1
+            })
+        }
         // if (document.documentElement.scrollTop >= scrollToEl3 && document.documentElement.scrollTop < scrollToEl4) {
         //     this.setModel({
         //         menuIndex: 2
@@ -145,11 +143,11 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
         }
     }
 
-    getListApartment = async () => {
-        const result = await this.service.getAll();
+    getListApartment = async (category: string, id: string) => {
+        const result = await this.service.getPaged({category});
         let data: any = [];
-        result?.map((el: any, i: number) => {
-            data.push({ ...el, id: el._id })
+        result.result?.map((el: any, i: number) => {
+            el._id !== id && data.push({ ...el, id: el._id })
         })
         return data
     }

@@ -22,6 +22,10 @@ import CardPriceString from "./CardPriceString";
 import Header from "./Header";
 import ControlButton from "./ControlButton";
 import PreviewImg from "./PreviewImg";
+import CtrlAutocomplete from "./CtrlAutocomplete";
+import ControlHtmlInput from "./ControlHtmlInput";
+import ControlImageGridList from "./ControlImageGridList";
+import FormForgotPassword from "./FormForgotPassword";
 
 export {
     AdminHeader,
@@ -47,5 +51,9 @@ export {
     TitleLink,
     CardPriceString,
     Header,
-    PreviewImg
+    PreviewImg,
+    CtrlAutocomplete,
+    ControlHtmlInput,
+    ControlImageGridList,
+    FormForgotPassword
 };

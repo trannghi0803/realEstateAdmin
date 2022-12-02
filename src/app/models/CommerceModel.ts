@@ -2,12 +2,11 @@ import { IApartment, IProject } from "../../commons/utils";
 import BaseModel from "./BaseModel";
 
 class CommerceModel extends BaseModel {
-   public listProject?: IProject[];
-   public listApartmentHightLight?: IApartment[];
-   public listApartmentResort?: IApartment[];
+   public listApartmentHightLight?: any[];
+   public listApartmentLand?: any[];
    public listApartmentHouse?: any[];
-   public listApartmentUrbanArea?: IApartment[];
-   public listApartmentOffice?: IApartment[];
+   public listApartmentUrbanArea?: any[];
+   public listApartmentVillas?: any[];
    bannerImages?: Array<any> ;
    type?: string;
 }
