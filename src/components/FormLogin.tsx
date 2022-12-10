@@ -1,11 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Constants, Resources, Screens, Strings } from "../constants";
-import { signinRedirect } from "../config";
 import { GlobalState } from "../stores/GlobalState";
 import ControlInput from "./ControlInput";
 import { Button, Grid, Link } from "@material-ui/core";
 import { Helpers, IInput } from "../commons/utils";
+import { useHistory } from "react-router-dom";
 
 
 interface IProps {
@@ -19,7 +19,7 @@ export default function FormLogin(props: IProps, states: IStateProps) {
 		GlobalState.setModalLogin(false)
 		GlobalState.setModalRegister(true)
 	}
-
+	const history = useHistory();
 	const [email, setEmail] = React.useState<IInput>();
 	const [password, setPassword] = React.useState<IInput>();
 
@@ -53,6 +53,7 @@ export default function FormLogin(props: IProps, states: IStateProps) {
 						GlobalState.setUser(user);
 						GlobalState.setUserInfo(response.user);
 						GlobalState.setModalLogin(false)
+						history.push(Screens.PROFILE)
 						GlobalState.hideLoading()
 					} else {
 						GlobalState.hideLoading()

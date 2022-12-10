@@ -36,62 +36,62 @@ ProfileService
 				<Grid className="standard-frame">
 					{/* this.setModel({ selectedOption: selectedOption, valueWatch: selectedOption.value } */}
 					<Grid style={{ margin: '5.33rem 0rem' }}>
-						<TitleLink className="mt-3" nameTitle={("Bài đăng đã được duyệt" || '')}></TitleLink>
-						{/* listApartmentFavorite */}
-						{(this.model.listRealEstateActive || []).length > 0 ?
-							// <CardSliderAparment nameTitle={Strings.Profile.FAVORITE_PRODUCT} lengthCard={this.model.listApartmentFavorite?.length || 0}>
-							this.model.listRealEstateActive?.map((item, index) => {
-								return (
-									<CardApartment
-										onClick={() => this.history.push(Screens.APARTMENT + `?id=${item.id}`)}
-										onClickLike={() => { }}
-										apartment={item}
-										voucherName={Strings.Common.VOUCHER_NAME}
-										remainDate={2}
-									/>
-								);
-							})
-							// </CardSliderAparment>
-							:
-							// <CardSliderAparment nameTitle={Strings.Profile.FAVORITE_PRODUCT} lengthCard={1}>
-							<Grid className="view-all-card">
-								{Strings.Common.NOT_ITEM}
+						<Grid container spacing={2}>
+							<Grid item xs={12} className="pb-0">
+								<TitleLink nameTitle={("Bài đăng đã được duyệt" || '')}></TitleLink>
 							</Grid>
-							// </CardSliderAparment> 
-						}
+							<Grid container xs={12} spacing={2}>
+								{/* listApartmentFavorite */}
+								{(this.model.listRealEstateActive || []).length > 0 ?
+									this.model.listRealEstateActive?.map((item, index) => {
+										return (
+											<Grid item>
+												<CardApartment
+													onClick={() => this.history.push(Screens.APARTMENT + `?id=${item.id}`)}
+													onClickLike={() => { }}
+													apartment={item}
+													voucherName={Strings.Common.VOUCHER_NAME}
+													remainDate={2}
+												/>
+											</Grid>
+										);
+									})
+									:
+									<Grid className="view-all-card">
+										{Strings.Common.NOT_ITEM}
+									</Grid>
+								}
+							</Grid>
+						</Grid>
 					</Grid>
 
 					<Grid style={{ margin: '5.33rem 0rem' }}>
-						<TitleLink className="mt-3" nameTitle={("Bài đăng đang chờ duyệt" || '')}></TitleLink>
-						{/* listApartmentFavorite */}
-						{(this.model.listRealEstateInactive || []).length > 0 ?
-							// <CardSliderAparment nameTitle={Strings.Profile.FAVORITE_PRODUCT} lengthCard={this.model.listApartmentFavorite?.length || 0}>
-							this.model.listRealEstateInactive?.map((item, index) => {
-								return (
-									<SwiperSlide
-										key={index + 'apartment'}
-										className="swiper-card-project"
-									>
-										<CardApartment
-											onClick={() => this.history.push(Screens.USER_SUBMIT_REAL_ESTATE + `?id=${item.id}`)}
-											onClickLike={() => { }}
-											apartment={item}
-											voucherName={Strings.Common.VOUCHER_NAME}
-											remainDate={2}
-										/>
-									</SwiperSlide>
-								);
-							})
-							// </CardSliderAparment>
-							:
-							// <CardSliderAparment nameTitle={Strings.Profile.FAVORITE_PRODUCT} lengthCard={1}>
-							<Grid className="view-all-card">
-								{Strings.Common.NOT_ITEM}
+						<Grid container spacing={2}>
+							<Grid item xs={12} className="pb-0">
+								<TitleLink nameTitle={("Bài đăng đang chờ duyệt" || '')}></TitleLink>
 							</Grid>
-							// </CardSliderAparment> 
-						}
-
-
+							<Grid container xs={12} spacing={2}>
+								{(this.model.listRealEstateInactive || []).length > 0 ?
+									this.model.listRealEstateInactive?.map((item, index) => {
+										return (
+											<Grid item>
+												<CardApartment
+													onClick={() => this.history.push(Screens.USER_SUBMIT_REAL_ESTATE + `?id=${item.id}`)}
+													onClickLike={() => { }}
+													apartment={item}
+													voucherName={Strings.Common.VOUCHER_NAME}
+													remainDate={2}
+												/>
+											</Grid>
+										);
+									})
+									:
+									<Grid className="view-all-card">
+										{Strings.Common.NOT_ITEM}
+									</Grid>
+								}
+							</Grid>
+						</Grid>
 					</Grid>
 				</Grid>
 			</Container>

@@ -40,6 +40,7 @@ class HomeController extends BaseController<HomeModel, HomeService> {
                 console.log("response", response);
                 if (response.statusCode === Constants.ApiCode.SUCCESS) {
                     Helpers.showAlert(Strings.Home.ACTIVE_SUCCESS, "success");
+                    GlobalState.setModalLogin(true)
                 } else {
                     console.log("result err", response)
                     Helpers.showAlert(response.msg, "error");

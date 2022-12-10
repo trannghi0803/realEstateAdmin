@@ -186,6 +186,7 @@ class ProfileController extends BaseController<ProfileModel, ProfileService> {
                         GlobalState.showLoading();
                         await new UserService().logout();
                         clearGlobalState();
+                        GlobalState.setModalLogin(true)
                         this.history.push(Screens.HOME);
                         // }
                         GlobalState.setModalLogin(true);

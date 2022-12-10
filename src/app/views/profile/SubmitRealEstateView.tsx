@@ -73,10 +73,12 @@ ProfileService
 			<Container>
 				{/* <HomeHeader/> */}
 				<Grid className="standard-frame">
-					<Grid className="frame-profile" key={this.model.renderKey}>
-						<Text className="title-profle">{"Tạo bài đăng tin Bất động sản"}</Text>
-						
-						<Grid item xs={12} sm={7} className="mt-3">
+					<Grid container spacing={2} className="frame-profile" key={this.model.renderKey}>
+						<Grid item xs={12} className="pb-0 pb-4 pt-3">
+							<Text className="title-profle">{"Tạo bài đăng tin Bất động sản"}</Text>
+							{/* <h4 className="font-weight-bold">{Strings.Staff.BASIC_INFO}</h4> */}
+						</Grid>
+						<Grid item xs={12} sm={6} className="mt-3">
 							<CtrlAutocomplete
 								label={Strings.RealEstate.CATEGORY}
 								items={this.model.categoryList || []}
@@ -90,7 +92,7 @@ ProfileService
 								errorMessage={this.model.category?.error}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<ControlInput
 								required
 								label={Strings.RealEstate.NAME}
@@ -103,7 +105,7 @@ ProfileService
 								}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<ControlInput
 								required
 								label={Strings.RealEstate.PRICE}
@@ -116,7 +118,7 @@ ProfileService
 								errorMessage={this.model.price?.error}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<ControlInput
 								label={Strings.RealEstate.AREA}
 								defaultValue={this.model.area?.value || ""}
@@ -128,7 +130,7 @@ ProfileService
 							/>
 						</Grid>
 
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<CtrlAutocomplete
 								variant="outlined"
 								label={Strings.RealEstate.CITY}
@@ -149,7 +151,7 @@ ProfileService
 								}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<CtrlAutocomplete
 								variant="outlined"
 								label={Strings.RealEstate.DISTRICT}
@@ -170,7 +172,7 @@ ProfileService
 								}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<CtrlAutocomplete
 								variant="outlined"
 								label={Strings.RealEstate.WARD}
@@ -187,7 +189,7 @@ ProfileService
 								}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<ControlInput
 								label={Strings.RealEstate.ADDRESS_LINE}
 								defaultValue={this.model.address?.addressLine || ""}
@@ -202,7 +204,7 @@ ProfileService
 							/>
 						</Grid>
 
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<Typography variant="subtitle1" gutterBottom>
 								{Strings.RealEstate.ATTRIBUTE}
 							</Typography>
@@ -216,7 +218,7 @@ ProfileService
 								}}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={7} className="mt-3">
+						<Grid item xs={12} sm={6} className="mt-3">
 							<Typography variant="subtitle1" gutterBottom>
 								{Strings.RealEstate.DESCRIPTION}
 							</Typography>
@@ -231,12 +233,12 @@ ProfileService
 							/>
 						</Grid>
 
-						<Grid item xs={12} md={12} lg={6}>
+						<Grid item xs={12} md={12} lg={12}>
 							<p>{Strings.RealEstate.IMAGE}</p>
 							{this.renderPhotos()}
 						</Grid>
 
-						<Grid item xs={12} sm={7} className="d-flex justify-content-center mb-3">
+						<Grid item xs={12} md={12} lg={12} className="d-flex justify-content-center mb-3">
 							<Button
 								variant="contained"
 								className="mt-3"

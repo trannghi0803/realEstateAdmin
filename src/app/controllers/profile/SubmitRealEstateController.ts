@@ -184,6 +184,11 @@ class SubmitRealEstateController extends BaseController<ProfileModel, ProfileSer
             //     images.push(image?.photo?.url)
             // })
 
+            if (this.model.images && this.model.images?.length < 0) {
+                Helpers.showAlert("Vui lòng thêm hình ảnh", "warning");
+                return;
+            }
+
             let data: any = {
                 category: this.model.category?.value,
                 categoryType: this.model.categoryList?.find(c => c.code === this.model.category?.value)?.group,
@@ -208,7 +213,7 @@ class SubmitRealEstateController extends BaseController<ProfileModel, ProfileSer
             let result: any;
             if (Helpers.isNullOrEmpty(this.model.id)) {
                 result = await this.service.create(data);
-                Helpers.showAlert(Strings.Message.CREATE_SUCCESS, 'success')
+                Helpers.showAlert(Strings.Message.CREATE_SUCCESS_WAITING_APPROVE, 'success')
             } else {
                 data.id = this.model.id;
                 result = await this.service.update(data);

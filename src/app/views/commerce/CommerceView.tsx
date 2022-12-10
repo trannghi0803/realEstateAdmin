@@ -382,7 +382,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                 </Grid>
 
                 {/* URBAN AREA */}
-                <Grid className="standard-frame" id={Constants.TYPE.URBAN_AREA}>
+                <Grid className="bg-gold" id={Constants.TYPE.URBAN_AREA}>
                     {(this.model.listApartmentLand || []).length > 0 ? (
                         <>
                             <CardSliderAparment lengthCard={(this.model.listApartmentLand?.length || 0)} nameTitle={Strings.Common.LAND}>
