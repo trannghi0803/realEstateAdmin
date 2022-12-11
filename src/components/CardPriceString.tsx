@@ -4,11 +4,13 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import "./ComponentStyles.css";
 import { Grid } from "@material-ui/core";
 import { Helpers } from "../commons/utils";
+import { CategoryTarget } from "../constants/Enums";
 interface IProps {
     unit?: string;
     number: Array<number>;
     classNumber?: string;
     classUnit?: string;
+    type?: number;
 }
 const useStyles = makeStyles(() =>
     createStyles({
@@ -60,13 +62,25 @@ export default function CardPriceString(props: IProps) {
     };
     const getSuffix = (number: number) => {
         if (number >= 100000 && number < 1000000) {
-            return Strings.Common.THOUSANDS
+            if (props.type === CategoryTarget.Rent) {
+                return `${Strings.Common.THOUSANDS}/tháng`
+            } else {
+                return Strings.Common.THOUSANDS
+            }
         }
         if (number >= 1000000 && number < 1000000000) {
-            return Strings.Common.MILLION
+            if(props.type === CategoryTarget.Rent) {
+                return `${Strings.Common.MILLION}/tháng`
+            } else {
+                return Strings.Common.MILLION
+            }
         }
         if (number >= 1000000000) {
-            return Strings.Common.BILLION
+            if (props.type === CategoryTarget.Rent) {
+                return `${Strings.Common.BILLION}/tháng`
+            } else {
+                return Strings.Common.BILLION
+            }
         }
         return ''
     }

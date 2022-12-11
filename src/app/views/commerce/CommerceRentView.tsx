@@ -102,7 +102,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                     )}
                 </Grid> */}
                 {/* highlight */}
-                <Grid className="bg-gold" id="-1">
+                <Grid className="bg-gold" id={`${CategoryRentType.OFFICE}`}>
                     <Grid className="standard-frame">
                         {(this.model.listRentOffice || []).length > 0 ?
                             <>
@@ -138,7 +138,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                 </Grid>
 
                 {/* resort */}
-                <Grid className="standard-frame" id={Constants.TYPE.RESORT}>
+                <Grid className="standard-frame" id={`${CategoryRentType.URBAN_AREA}`}>
                     {(this.model.listRentUrbanArea || []).length > 0 ? (
                         <>
                             <CardSliderAparment lengthCard={(this.model.listRentUrbanArea?.length || 0)} nameTitle={Strings.Common.APARTMENT_URBAN_AREA_RENT}>
@@ -174,7 +174,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                 </Grid>
                 
                 {/* office */}
-                <Grid className="bg-gold" id={Constants.TYPE.OFFICE}>
+                <Grid className="bg-gold" id={`${CategoryRentType.HOUSE}`}>
                     <Grid className="standard-frame">
                         {(this.model.listRentHouse || []).length > 0 ? (
                             <>
@@ -195,7 +195,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.URBAN_AREA}&target=${CategoryTarget.Rent}`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.HOUSE}&target=${CategoryTarget.Rent}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -212,7 +212,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                 </Grid>
 
                 {/* house */}
-                <Grid className="standard-frame" id={Constants.TYPE.HOUSE}>
+                <Grid className="standard-frame" id={`${CategoryRentType.STORE}`}>
                     {(this.model.listRentStore || []).length > 0 ? (
                         <>
                             <CardSliderAparment lengthCard={(this.model.listRentStore?.length || 0)} nameTitle={Strings.Common.STORE_RENT}>

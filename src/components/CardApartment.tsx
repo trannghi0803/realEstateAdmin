@@ -213,7 +213,7 @@ export default function CardApartment(props: IProps) {
                                 <Tooltip title={`${Strings.Components.AREA}`} placement="bottom-start" arrow>
                                     <img className="img-24 mr-2" src={Resources.Icon.DONG_GREEN} />
                                 </Tooltip>
-                                <CardPriceString number={[props.apartment.price || 0]} />
+                                <CardPriceString number={[props.apartment.price || 0]} type={props.apartment?.categoryType}/>
                                 {/* {props.apartment.price} */}
                             </Grid> : Strings.Common.NOT_SALE_YET
                         }

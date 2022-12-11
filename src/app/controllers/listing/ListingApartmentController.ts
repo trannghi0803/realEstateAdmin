@@ -37,6 +37,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
         const { minArea } = this.getUrlParams(["minArea"]);
         const { maxArea } = this.getUrlParams(["maxArea"]);
         const { district } = this.getUrlParams(["district"]);
+        const { searchText } = this.getUrlParams(["searchText"]);
 
         this.setModel({
             province: { value: province },
@@ -49,6 +50,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             minArea: parseInt(minArea),
             maxArea: parseInt(maxArea),
             districtId: district,
+            searchText: searchText
             // floorSearch: {value: floorSearch},
             // bedroomSearch: {value: bedroomSearch},
             // bathroomSearch: {value: bathroomSearch},
@@ -114,6 +116,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             minPrice: this.model.minPrice || undefined,
             maxPrice: this.model.maxPrice || undefined,
             categoryType: this.model.target?.value || undefined,
+            title: this.model.searchText || undefined,
             provinceName: GlobalState.listProvinceList?.find((el: any) => el.value === this.model.province?.value)?.label || undefined,
         }
         const result = await new ApartmentService().getPaged(data);
@@ -206,6 +209,14 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
                 GlobalState.setFilter({
                     ...GlobalState.filterObj, minArea: undefined, maxArea: undefined
                 })
+                break
+            case 7: //status
+                this.setModel({
+                    searchText: undefined
+                });
+                GlobalState.setFilter({
+                    ...GlobalState.filterObj, searchText: undefined
+                });
                 break
         }
         this.getApartment();

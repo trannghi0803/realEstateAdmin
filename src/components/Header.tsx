@@ -285,6 +285,7 @@ export default function Header(this: any, props: IProps) {
             minArea: GlobalState.filterObj?.minArea,
             maxArea: GlobalState.filterObj?.maxArea,
             district: GlobalState.filterObj?.district,
+            searchText: GlobalState.filterObj?.searchText,
         }
         switch (key) {
             case 0:
@@ -413,6 +414,9 @@ export default function Header(this: any, props: IProps) {
         if (!Helpers.isNullOrEmpty(GlobalState.filterObj?.maxArea)) {
             params.append('maxArea', GlobalState.filterObj?.maxArea)
         }
+        if (!Helpers.isNullOrEmpty(GlobalState.filterObj?.searchText)) {
+            params.append('searchText', GlobalState.filterObj?.searchText)
+        }
         // if (location.pathname === Screens.LISTING_APARTMENT) {
         history.push({
             pathname: Screens.LISTING_APARTMENT,
@@ -453,11 +457,17 @@ export default function Header(this: any, props: IProps) {
     };
 
     const commonSearch = () => {
-        history.push(`${Screens.SEARCH}?keyword=${valueSearch}`)
+        let params = new URLSearchParams;
+        params.append('searchText', valueSearch || '')
+        // history.push(`${Screens.SEARCH}?keyword=${valueSearch}`)
+        history.push({
+            pathname: Screens.LISTING_APARTMENT,
+            search: `?${params.toString()}`,
+        });
     }
     const onKeyDownEnter = (event: any) => {
         if (event.which === 13 || event.keyCode === 13) {
-            commonSearch()
+            handleSearch()
         }
     }
     const handleLogin = async () => {
@@ -770,8 +780,8 @@ export default function Header(this: any, props: IProps) {
                         <Grid className="login-register">
                             <Grid className="search-container">
                                 <Grid className={classes.boxInputFind}>
-                                    <input onKeyDown={onKeyDownEnter} defaultValue={valueSearch} onChange={(event) => setValueSearch(event.target.value)} className={classes.inputFind} type="text" placeholder="Tìm kiếm..." />
-                                    <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={commonSearch} />
+                                    <input onKeyDown={onKeyDownEnter} defaultValue={GlobalState.filterObj?.searchText} onChange={(event) => GlobalState.setFilter({ ...GlobalState?.filterObj, searchText: event.target.value})} className={classes.inputFind} type="text" placeholder="Tìm kiếm..." />
+                                    <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={handleSearch} />
                                 </Grid>
                             </Grid>
                             {/* <Grid className="dropdown"> */}
@@ -928,8 +938,8 @@ export default function Header(this: any, props: IProps) {
                             </Grid>
                         }
                         <Grid className={`${classes.boxInputFind} mb-4 mt-3 w-75`}>
-                            <input onKeyDown={onKeyDownEnter} defaultValue={valueSearch} onChange={(event) => setValueSearch(event.target.value)} className={classes.inputFind} type="text" placeholder="Tìm kiếm..." />
-                            <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={commonSearch} />
+                            <input onKeyDown={onKeyDownEnter} defaultValue={GlobalState.filterObj?.searchText} onChange={(event) => GlobalState.setFilter({ ...GlobalState?.filterObj, searchText: event.target.value })} className={classes.inputFind} type="text" placeholder="Tìm kiếm..." />
+                            <img className="cursor-pointer" style={{ width: '2rem' }} src={Resources.Icon.SEARCH_YELLOW} onClick={handleSearch} />
                         </Grid>
                         {/* <Grid className={classes.language}> */}
                         {/* <Grid className="flag-header justify-content-center">

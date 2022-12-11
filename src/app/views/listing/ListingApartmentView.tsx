@@ -127,6 +127,17 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                                     <CloseIcon className="cursor-pointer" onClick={() => this.controller.removeAttributes(6)} />
                                 </Grid>
                                 : ''}
+                            {this.model.searchText
+                                ?
+                                <Grid className="project-item">
+                                    <span className="project-item-name">
+                                        {`Tiêu đề: ${this.model.searchText}`}
+                                        {/* {GlobalState.categoryList?.find((c: any) => c.value === this.model.target?.value)?.label} */}
+                                    </span>
+                                    <CloseIcon className="cursor-pointer" onClick={() => this.controller.removeAttributes(7)} />
+                                </Grid>
+                                : null
+                            }
                         </Grid>
                         {/* Item */}
                         <Grid className="item-project-list" id="frameItem">

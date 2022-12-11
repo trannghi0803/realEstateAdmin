@@ -23,17 +23,7 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
                 await this.getDetail(id)
 
                 window.addEventListener("scroll", () => { this.showProperty(); this.setEventButtonfloating() });
-                const img = apartment.images || [];
-                const listImg: Array<any> = [];
-                img.forEach((element: any) => {
-                    listImg.push({
-                        src: element || Resources.Images.DEFAULT
-                    })
-                });
-                this.setModel({
-                    id: id,
-                    listImg
-                });
+                
                 this.setEventButtonfloating();
             }
             this.hideLoading()
@@ -62,7 +52,16 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
             this.history.replace({ pathname: Screens.APARTMENT, search: `?&id=${id}` })
             this.hideLoading();
             window.scrollTo(0, 0)
+            const img = apartment.images || [];
+            console.log("img", img)
+            const listImg: Array<any> = [];
+            img.forEach((element: any) => {
+                listImg.push({
+                    src: element || Resources.Images.DEFAULT
+                })
+            });
             this.setModel({
+                listImg,
                 apartment,
                 apartments,
                 id: id,

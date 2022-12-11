@@ -44,6 +44,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation, Autoplay, EffectFade } from "swiper";
 import { Link } from "react-router-dom";
 import ImgView from "../../../components/ImgView";
+import { CategoryTarget } from "../../../constants/Enums";
 SwiperCore.use([Pagination]);
 const optionTypeLoan = [
     { value: "1", label: Strings.Aparment.PRINCIPAL_PROFIT_DEVIDED_MONTHLY },
@@ -154,7 +155,7 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
                                     {apartmentPhotos.map((a: any) => {
                                         return (
                                             <SwiperSlide>
-                                                <Image loading={<CircularProgress style={{ color: 'var(--default-text-color-yellow)' }} />} style={{ width: '100%', height: '100%', objectFit: 'cover', paddingTop: '0', background: 'rgb(247 238 223)' }} className="img-background" src={a || Resources.Images.DEFAULT} />
+                                                <Image style={{ width: '100%', height: '100%', objectFit: 'cover', paddingTop: '0', background: 'rgb(247 238 223)' }} className="img-background" src={a || Resources.Images.DEFAULT} />
                                             </SwiperSlide>
                                         )
                                     })}
@@ -235,14 +236,17 @@ export default class ApartmentView extends BaseView<ApartmentController, Apartme
                                                 Number(apartment.price !== 0) ?
                                                     <>
                                                         <Grid className="mr-4">
-                                                            <CardPriceString number={[apartment.price || 0]} />
+                                                            <CardPriceString number={[apartment.price || 0]} type={apartment.categoryType} />
                                                             {/* <Grid className="text-dark font-18 line-height-1">
                                                             <span className={'pl-2 pr-2'}>
                                                                 {Number(apartment.price !== 0) ? `${apartment.price / 1000000000} ${Strings.Common.BILLION}` :  "Thỏa thuận"}
                                                             </span>
                                                         </Grid> */}
                                                         </Grid>
-                                                        <CardPriceString classNumber="text-dark font-18 line-height-1" number={[(apartment.price || 0) / (apartment.area || 1)]} unit={Strings.Common.SQUARE_METTER} />
+                                                        {
+                                                            apartment.categoryType === CategoryTarget.Sell &&
+                                                            <CardPriceString classNumber="text-dark font-18 line-height-1" number={[(apartment.price || 0) / (apartment.area || 1)]} unit={Strings.Common.SQUARE_METTER} />
+                                                        }
                                                     </>
                                                     :
                                                     <>

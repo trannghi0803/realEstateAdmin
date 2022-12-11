@@ -1154,6 +1154,7 @@
     opacity: 1;
     visibility: visible;
     padding: 0rem;
+    box-shadow: rgb(17 17 26 / 19%) 0px 20px 30px -20px;
 }
 .wsmenu-list li > .wsmenu-submenu {
     transform-style: preserve-3d;

@@ -102,7 +102,7 @@ export default class ProjectView extends BaseView<ProjectController, ProjectMode
         const attrDoc: any[] = Helpers.getAttributes(project.attributes, Constants.DISPLAY_TYPE.DOCUMENT).projectAttributes || [];
         const minPrice = project.minPrice || 0;
         const maxPrice = project.maxPrice || 0;
-        let listUImg: any[] = this.getUImgView(attrUtilities);
+        // let listUImg: any[] = this.getUImgView(attrUtilities);
 
         return (
             <Grid className="page-container">
@@ -188,7 +188,7 @@ export default class ProjectView extends BaseView<ProjectController, ProjectMode
                                     <CircleIcon icon={Resources.Icon.YOUTUBE_LINEAL} />
                                 </Grid>
                             </Tooltip>
-                            {(this.model.listImg || [])?.length > 0 ?
+                            {/* {(this.model.listImg || [])?.length > 0 ?
                                 <Grid
                                     className="d-flex img-number-container"
                                     onClick={() => {
@@ -201,7 +201,7 @@ export default class ProjectView extends BaseView<ProjectController, ProjectMode
                                     <img src={Resources.Icon.IMAGE} />
                                     <Text className="img-number">{projectPhotos.length}</Text>
                                 </Grid> : null
-                            }
+                            } */}
                         </Grid>
                     </Grid>
                     <Grid className="content-apm">
@@ -642,7 +642,7 @@ export default class ProjectView extends BaseView<ProjectController, ProjectMode
                 viewerIsOpen={this.model.isView} onClose={(value)=>this.setModel({isView: value})}/>
 
                 {/* Img UTILITIES */}
-                <ImgView imgList={listUImg}
+                <ImgView imgList={[]}
                 curImg={this.model.imageNumber}
                 viewerIsOpen={this.model.isShowViewImg} onClose={(value)=>this.setModel({isShowViewImg: value})}/>
             </Grid >
