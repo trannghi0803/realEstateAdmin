@@ -9,6 +9,12 @@ class CommerceModel extends BaseModel {
    public listApartmentVillas?: any[];
    bannerImages?: Array<any> ;
    type?: string;
+
+   //rent
+   public listRentHouse?: any[];
+   public listRentOffice?: any[];
+   public listRentUrbanArea?: any[];
+   public listRentStore?: any[];
 }
 
 export default CommerceModel;

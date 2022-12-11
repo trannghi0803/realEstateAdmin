@@ -84,6 +84,12 @@ export default {
         APARTMENT_URBAN_AREA: "Căn hộ, chung cư",
         LAND: "Đất nền",
 
+        //rent
+        OFFICE: "Cho thuê văn phòng",
+        APARTMENT_URBAN_AREA_RENT: "Cho thuê căn hộ, chung cư",
+        PERSONAL_PROPERTY_HOUSE_RENT: "Cho thuê nhà riêng",
+        STORE_RENT: "Cho thuê cửa hàng",
+
         //Not yet
         NO_VIDEO_YET: "Chưa có video",
         NOT_SALE_YET: "Thỏa thuận",

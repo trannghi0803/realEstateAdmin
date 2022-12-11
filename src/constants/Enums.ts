@@ -77,6 +77,12 @@ export enum CategoryType {
     VILLAS = 3,
     HIGH_LIGHT = 4
 }
+export enum CategoryRentType {
+    OFFICE = 0,
+    URBAN_AREA = 1,
+    HOUSE = 2,
+    STORE = 3
+}
 
 export enum RealEstateType {
     Create = 1,

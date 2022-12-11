@@ -233,6 +233,12 @@ const Constants = {
         OFFICE: '2',
         URBAN_AREA: '3'
     },
+    RENT_TYPE: {
+        OFFICE: '0',
+        URBAN_AREA: '1',
+        HOUSE: '2',
+        STORE: '3',
+    },
     GOOGLE: {
         CLIENT_ID: "821697217175-qd87ptcinen79dd9mp8rjb87ngsu1erf.apps.googleusercontent.com"
     },
@@ -245,6 +251,12 @@ const Constants = {
     APARTMENT_URBAN_AREA: "6382f20425c4bc3d490ae2a1", //BĐS Căn hộ chung cư
     REAL_ESTATE_LAND: "6382f22925c4bc3d490ae2b8", //BĐS Đất nền
     VILLAS: "6382f24425c4bc3d490ae2cb", //BĐS biệt thụ liền kề
+
+    //rent
+    OFFICE: "639510468e028bad296642d7",
+    HOUSE: "639510d98e028bad2966431b",
+    URBAN_AREA: "6394f81473685fd8a5f91620",
+    STORE: "639510ba8e028bad29664309",
 };
 
 export default Constants;

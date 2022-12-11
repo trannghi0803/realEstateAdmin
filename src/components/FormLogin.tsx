@@ -53,7 +53,7 @@ export default function FormLogin(props: IProps, states: IStateProps) {
 						GlobalState.setUser(user);
 						GlobalState.setUserInfo(response.user);
 						GlobalState.setModalLogin(false)
-						history.push(Screens.PROFILE)
+						// history.push(Screens.PROFILE)
 						GlobalState.hideLoading()
 					} else {
 						GlobalState.hideLoading()

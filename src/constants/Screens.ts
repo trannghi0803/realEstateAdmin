@@ -27,6 +27,7 @@ const Screens = {
     LISTING_PROJECT: "/projects",
     LISTING_APARTMENT: "/apartments",
     COMMERCE: "/commerce",
+    COMMERCE_RENT: "/rent",
     KEEP_APARTMENT: "/keepApartment",
     KEEP_SUCCESS: "/keepSuccess",
     

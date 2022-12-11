@@ -65,31 +65,28 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             this.showLoading();
             let data: any
             console.log("showLoading", this.model.types?.value, Number(this.model.types?.value))
-            switch (`${this.model.types?.value}`) {
-                case `${CategoryType.HIGH_LIGHT}`:
-                    data = await this.getPaged(undefined, IsHighLight.True);
-                    console.log("HIGH_LIGHT")
-                    break;
-                case `${CategoryType.APARTMENT_HOUSE}`:
-                    data = await this.getPaged(Constants.APARTMENT_HOUSE);
-                    console.log("APARTMENT_HOUSE")
-                    break;
-                case `${CategoryType.APARTMENT_URBAN_AREA}`:
-                    data = await this.getPaged(Constants.APARTMENT_URBAN_AREA);
-                    console.log("APARTMENT_URBAN_AREA")
-                    break;
-                case `${CategoryType.REAL_ESTATE_LAND}`:
-                    data = await this.getPaged(Constants.REAL_ESTATE_LAND);
-                    console.log("REAL_ESTATE_LAND")
-                    break;
-                case `${CategoryType.VILLAS}`:
-                    data = await this.getPaged(Constants.VILLAS);
-                    console.log("VILLAS")
-                    break;
-                default: data = await this.getPaged()
-                    console.log("default")
-                    break;
-            }
+            // switch (`${this.model.types?.value}`) {
+            //     case `${CategoryType.APARTMENT_HOUSE}`:
+            //         data = await this.getPaged(Constants.APARTMENT_HOUSE);
+            //         console.log("APARTMENT_HOUSE")
+            //         break;
+            //     case `${CategoryType.APARTMENT_URBAN_AREA}`:
+            //         data = await this.getPaged(Constants.APARTMENT_URBAN_AREA);
+            //         console.log("APARTMENT_URBAN_AREA")
+            //         break;
+            //     case `${CategoryType.REAL_ESTATE_LAND}`:
+            //         data = await this.getPaged(Constants.REAL_ESTATE_LAND);
+            //         console.log("REAL_ESTATE_LAND")
+            //         break;
+            //     case `${CategoryType.VILLAS}`:
+            //         data = await this.getPaged(Constants.VILLAS);
+            //         console.log("VILLAS")
+            //         break;
+            //     default: data = await this.getPaged()
+            //         console.log("default")
+            //         break;
+            // }
+            data = await this.getPaged(`${this.model.types?.value}`);
 
             console.log("data", data)
 
@@ -107,12 +104,11 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
         }
     }
 
-    getPaged = async (category?: string, isHighLight?: number) => {
+    getPaged = async (category?: string) => {
         let data: any = {
             pageNumber: this.model.currentPage || 1,
             pageSize: Constants.ROW_PER_PAGE,
             category: category || undefined,
-            isHighLight: isHighLight || undefined,
             minArea: this.model.minArea || undefined,
             maxArea: this.model.maxArea || undefined,
             minPrice: this.model.minPrice || undefined,

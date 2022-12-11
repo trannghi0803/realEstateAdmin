@@ -11,7 +11,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { signinRedirect, signoutRedirectCallback } from "../config";
 import CloseIcon from '@material-ui/icons/Close';
 import { ProcessSlider } from ".";
-import { HomeService, UserService } from "../app/services";
+import { HomeService, ProfileService, UserService } from "../app/services";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { makeStyles } from '@material-ui/core/styles';
 import ControlAutocomplete from "./ControlAutocomplete";
@@ -19,6 +19,7 @@ import SelectCheckbox from "./SelectIcon";
 import CommerceService from "../app/services/CommerceService";
 import Cookies from 'universal-cookie';
 import BaseService from "../app/services/BaseService";
+import { CategoryTarget } from "../constants/Enums";
 
 const useStyles = makeStyles({
     menuDropdownSearch: {
@@ -180,6 +181,11 @@ export default function Header(this: any, props: IProps) {
     const [HL, setHL] = React.useState<Array<any>>([]);
     const [valueSearch, setValueSearch] = React.useState<string>();
 
+    const [optionCategoryTotal, setOptionCategoryTotal] = React.useState<IOptionSelect[]>([])
+    const [optionCategory, setOptionCategory] = React.useState<IOptionSelect[]>([])
+    const [optionCategorySell, setOptionCategorySell] = React.useState<IOptionSelect[]>([])
+    const [optionCategoryRent, setOptionCategoryRent] = React.useState<IOptionSelect[]>([])
+
     useEffect(() => {
         const { province } = getUrlParams(["province"]);
         const { types } = getUrlParams(["types"]);
@@ -225,7 +231,33 @@ export default function Header(this: any, props: IProps) {
             window.addEventListener("scroll", toggleVisibility);
         }
         getProvince();
+        getCategory();
+        
     }, []);
+
+    const getCategory = async () => {
+        const result = await new ProfileService().getAllCategory();
+        // let optionCategory: any = result?.filter((c: any) => Number(c.type) === type) || [];
+        let optionCategorySell: IOptionSelect[] = [];
+        let optionCategoryRent: IOptionSelect[] = [];
+        result?.map((c: any) => {
+            if (Number(c.type) === CategoryTarget.Sell) {
+                optionCategorySell.push({
+                    label: c.name,
+                    value: c._id
+                })
+            } else {
+                optionCategoryRent.push({
+                    label: c.name,
+                    value: c._id
+                })
+            }
+        })
+        setOptionCategorySell(optionCategorySell)
+        setOptionCategoryRent(optionCategoryRent)
+        GlobalState.setCategoryList([...optionCategorySell, ...optionCategoryRent]);
+    }
+    
 
     const getProvince = async () => {
         let listProvince: IOptionSelect[] = [];
@@ -242,7 +274,7 @@ export default function Header(this: any, props: IProps) {
         setOptionProvince(listProvince)
     }
 
-    const handleClose = (value: any, key: number) => {
+    const handleClose = async (value: any, key: number) => {
         let filterObj: any = {
             target: GlobalState.filterObj?.target,
             types: GlobalState.filterObj?.types,
@@ -258,6 +290,7 @@ export default function Header(this: any, props: IProps) {
             case 0:
                 if (!Helpers.isNullOrEmpty(value)) {
                     filterObj.target = value;
+                    // filterCategory(value, optionCategoryTotal);
                 }
                 break;
             case 1:
@@ -487,7 +520,7 @@ export default function Header(this: any, props: IProps) {
                                             <Grid className="value-filter">
                                                 {GlobalState.filterObj?.types ?
                                                     <span>
-                                                        {Helpers.getCodeName('type', GlobalState.filterObj?.types)}
+                                                        {GlobalState.categoryList?.find((el: any) => `${(el.value)}` === `${GlobalState.filterObj?.types}`)?.label}
                                                         <CloseIcon className="icon-close-value" onClick={() => { GlobalState.setFilter({ ...GlobalState.filterObj, types: undefined }); setKey(key => key + 1) }} />
                                                     </span>
 
@@ -496,10 +529,11 @@ export default function Header(this: any, props: IProps) {
                                             </Grid>
                                         </Grid>
                                         <ul className="wsmenu-submenu">
-                                            {optionType?.map((item, index) => {
+                                            {(Number(GlobalState.filterObj?.target) === CategoryTarget.Rent ? optionCategoryRent : optionCategorySell)?.map((item, index) => {
+                                                // console.log("item", item)
                                                 return (
                                                     <li key={`type${index}`} onClick={() => handleClose(item.value, 1)}
-                                                        className={`${GlobalState.filterObj?.types === item.value ? 'drop-item-active' : ''} drop-items-yellow`}>
+                                                        className={`${GlobalState.filterObj?.values === item.value ? 'drop-item-active' : ''} drop-items-yellow`}>
                                                         {item.label}
                                                     </li>
                                                 )
@@ -694,12 +728,37 @@ export default function Header(this: any, props: IProps) {
                                         </li>
                                     </ul>
                                 </li>
-                                <li className="d-flex align-items-center menu-header-ancestor ">
+                                <li className={`${location.pathname === Screens.COMMERCE_RENT ? 'active' : ''} d-flex align-items-center menu-header-ancestor`}>
+                                    <Grid className="item-menu-under">
+                                        <img className="icon-header-under" src={Resources.Icon.RENT} />
+                                        <Grid>
+                                            <Link to="/rent">
+                                                {Strings.Home.FOR_RENT}
+                                            </Link>
+                                            <ExpandMoreIcon />
+                                        </Grid>
+                                    </Grid>
+                                    <ul className="wsmenu-submenu">
+                                        <li >
+                                            <Link className="drop-items-yellow" to={`/rent?type=${Constants.RENT_TYPE.OFFICE}`}>{Strings.Common.OFFICE}</Link>
+                                        </li>
+                                        <li >
+                                            <Link className="drop-items-yellow" to={`/rent?type=${Constants.RENT_TYPE.URBAN_AREA}`}>{Strings.Common.APARTMENT_URBAN_AREA_RENT}</Link>
+                                        </li>
+                                        <li >
+                                            <Link className="drop-items-yellow" to={`/rent?type=${Constants.RENT_TYPE.HOUSE}`}>{Strings.Common.PERSONAL_PROPERTY_HOUSE_RENT}</Link>
+                                        </li>
+                                        <li >
+                                            <Link className="drop-items-yellow" to={`/rent?type=${Constants.RENT_TYPE.STORE}`}>{Strings.Common.STORE_RENT}</Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {/* <li className="d-flex align-items-center menu-header-ancestor ">
                                     <Grid className="item-menu-under">
                                         <img className="icon-header-under" src={Resources.Icon.RENT} />
                                         {Strings.Home.FOR_RENT}
                                     </Grid>
-                                </li>
+                                </li> */}
                                 <li className={`${location.pathname === Screens.NEWS ? 'active' : ''} d-flex align-items-center menu-header-ancestor`}>
                                     <Grid className="item-menu-under">
                                         <img className="icon-header-under" src={Resources.Icon.MAIL} />

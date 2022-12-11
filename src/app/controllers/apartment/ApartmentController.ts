@@ -144,7 +144,9 @@ class ApartmentController extends BaseController<ApartmentModel, ApartmentServic
     }
 
     getListApartment = async (category: string, id: string) => {
-        const result = await this.service.getPaged({category});
+        const result = await this.service.getPaged({
+            category,
+        });
         let data: any = [];
         result.result?.map((el: any, i: number) => {
             el._id !== id && data.push({ ...el, id: el._id })

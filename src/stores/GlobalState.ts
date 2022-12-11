@@ -26,6 +26,7 @@ const Global = types
         province: types.frozen(),
         isLoadSplash: true,
         listProvinceList: types.frozen(),
+        categoryList: types.frozen(),
         contacts: types.frozen(),
         userInfo: types.frozen(),
     })
@@ -71,6 +72,9 @@ const Global = types
         },
         setListProvinceList(value: any){
             self.listProvinceList = value
+        },
+        setCategoryList(value: any) {
+            self.categoryList = value
         },
         setContacts(value: any){
             self.contacts = value

@@ -13,6 +13,7 @@ import { SearchView } from "../app/views/search";
 import { ProfileView } from "../app/views/profile";
 import FavoriteItem from "../app/views/profile/FavoriteView";
 import SubmitRealEstateView from "../app/views/profile/SubmitRealEstateView";
+import CommerceRentView from "../app/views/commerce/CommerceRentView";
 
 export default function HomeRoutes() {
     return (
@@ -21,6 +22,7 @@ export default function HomeRoutes() {
             <Route exact path={Screens.PROJECT} render={(p) => { return <ProjectView {...p} />; }} />
             <Route exact path={Screens.APARTMENT} render={(p) => { return <ApartmentView {...p} />; }} />
             <Route exact path={Screens.COMMERCE} render={(p) => { return <CommerceView {...p} />; }} />
+            <Route exact path={Screens.COMMERCE_RENT} render={(p) => { return <CommerceRentView {...p} />; }} />
             <Route exact path={Screens.LISTING_PROJECT} render={(p) => { return <ListingProjectView {...p} />; }} />
             <Route exact path={Screens.LISTING_APARTMENT} render={(p) => { return <ListingApartmentView {...p} />; }} />
             <Route exact path={Screens.NEWS} render={(p) => { return <NewsView {...p} />; }} />
