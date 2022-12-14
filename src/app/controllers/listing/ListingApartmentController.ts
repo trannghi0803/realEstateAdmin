@@ -38,6 +38,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
         const { maxArea } = this.getUrlParams(["maxArea"]);
         const { district } = this.getUrlParams(["district"]);
         const { searchText } = this.getUrlParams(["searchText"]);
+        const { isHighLight } = this.getUrlParams(["isHighLight"]);
 
         this.setModel({
             province: { value: province },
@@ -50,7 +51,8 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             minArea: parseInt(minArea),
             maxArea: parseInt(maxArea),
             districtId: district,
-            searchText: searchText
+            searchText: searchText,
+            isHighLight
             // floorSearch: {value: floorSearch},
             // bedroomSearch: {value: bedroomSearch},
             // bathroomSearch: {value: bathroomSearch},
@@ -88,7 +90,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             //         console.log("default")
             //         break;
             // }
-            data = await this.getPaged(`${this.model.types?.value}`);
+            data = await this.getPaged(this.model.types?.value);
 
             console.log("data", data)
 
@@ -106,7 +108,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
         }
     }
 
-    getPaged = async (category?: string) => {
+    getPaged = async (category?: string, isHighLight?: number) => {
         let data: any = {
             pageNumber: this.model.currentPage || 1,
             pageSize: Constants.ROW_PER_PAGE,
@@ -117,6 +119,7 @@ class ListingApartmentController extends BaseController<ListingModel, ListingSer
             maxPrice: this.model.maxPrice || undefined,
             categoryType: this.model.target?.value || undefined,
             title: this.model.searchText || undefined,
+            isHighLight: this.model.isHighLight || undefined,
             provinceName: GlobalState.listProvinceList?.find((el: any) => el.value === this.model.province?.value)?.label || undefined,
         }
         const result = await new ApartmentService().getPaged(data);

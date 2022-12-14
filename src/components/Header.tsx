@@ -565,7 +565,7 @@ export default function Header(this: any, props: IProps) {
                                                             }} />
                                                         </>
                                                         :
-                                                        Strings.Header.PROVINCE_DISTRICT_WARD
+                                                        Strings.Header.PROVINCE
                                                 }
                                                 {/* {Strings.Header.PROVINCE_DISTRICT_WARD} */}
                                             </Grid>

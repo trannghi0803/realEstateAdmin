@@ -31,6 +31,7 @@ class ListingModel extends BaseModel {
     line?: IInput;
     searchText?: string;
     target?: IInput;
+    isHighLight?: number;
 
     floorSearch?: IInput;
     projectIdSearch?: IInput;

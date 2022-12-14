@@ -20,7 +20,7 @@ import SwiperCore, {
     Autoplay
   } from 'swiper';
   import Image from 'material-ui-image'
-import { CategoryTarget, CategoryType } from "../../../constants/Enums";
+import { CategoryTarget, CategoryType, IsHighLight } from "../../../constants/Enums";
 
 SwiperCore.use([Pagination,  Autoplay]);
 
@@ -226,7 +226,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.HIGH_LIGHT}&target=${CategoryTarget.Sell}`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?isHighLight=${IsHighLight.True}&target=${CategoryTarget.Sell}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -262,7 +262,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.VILLAS}&target=${CategoryTarget.Sell}`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.VILLAS}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
@@ -329,7 +329,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.APARTMENT_URBAN_AREA}&target=${CategoryTarget.Sell}`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.APARTMENT_URBAN_AREA}&target=${CategoryTarget.Sell}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -366,7 +366,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.APARTMENT_HOUSE}&target=${CategoryTarget.Sell}`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.APARTMENT_HOUSE}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
@@ -401,7 +401,7 @@ export default class CommerceView extends BaseView<CommerceController, CommerceM
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryType.REAL_ESTATE_LAND}&target=${CategoryTarget.Sell}`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.REAL_ESTATE_LAND}&target=${CategoryTarget.Sell}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>

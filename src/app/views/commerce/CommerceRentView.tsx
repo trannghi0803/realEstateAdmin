@@ -122,7 +122,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.OFFICE}&target=${CategoryTarget.Rent}`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.OFFICE}&target=${CategoryTarget.Rent}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -158,7 +158,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.URBAN_AREA}&target=${CategoryTarget.Rent}`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.URBAN_AREA}&target=${CategoryTarget.Rent}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>
@@ -195,7 +195,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                                     })}
                                 </CardSliderAparment>
                                 <Grid className="w-100 d-flex justify-content-center">
-                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.HOUSE}&target=${CategoryTarget.Rent}`)}>
+                                    <button className="btn-view-commerce" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.HOUSE}&target=${CategoryTarget.Rent}`)}>
                                         {Strings.Commerce.VIEW_ADD_PROJECT}
                                     </button>
                                 </Grid>
@@ -232,7 +232,7 @@ export default class CommerceRentView extends BaseView<CommerceRentController, C
                                 })}
                             </CardSliderAparment>
                             <Grid className="w-100 d-flex justify-content-center">
-                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${CategoryRentType.STORE}&target=${CategoryTarget.Rent}`)}>
+                                <button className="btn-view-commerce_1" onClick={() => this.history.push(`${Screens.LISTING_APARTMENT}?types=${Constants.HOUSE}&target=${CategoryTarget.Rent}`)}>
                                     {Strings.Commerce.VIEW_ADD_PROJECT}
                                 </button>
                             </Grid>

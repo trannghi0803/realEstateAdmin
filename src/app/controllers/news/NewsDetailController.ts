@@ -1,4 +1,5 @@
 import { INews } from "../../../commons/utils";
+import { Constants } from "../../../constants";
 import { NewsModel } from "../../models";
 import NewsService from "../../services/NewsService";
 import { BaseController } from "../base";
@@ -12,10 +13,13 @@ class NewsDetailController extends BaseController<NewsModel, NewsService> {
             this.showLoading();
             const {id} = this.getUrlParams(["id"]);
             const detail = await this.service.getDetail(id);
-            const result = await this.service.getAll();
+            const result = await this.service.getPaged({
+                pageNumber: this.model.currentPage || 1,
+                pageSize: Constants.ROW_PER_PAGE,
+            });
             this.setModel({
                 newDetail: detail,
-                relatedPosts: result?.filter((item: any)=>item._id !== id)
+                relatedPosts: result?.result?.filter((item: any)=>item._id !== id)
             })
             this.hideLoading();
         } catch (error) {
@@ -32,7 +36,10 @@ class NewsDetailController extends BaseController<NewsModel, NewsService> {
         try {
             this.showLoading();
             const detail = await this.service.getDetail(id);
-            const result = await this.service.getAll();
+            const result = await this.service.getPaged({
+                pageNumber: this.model.currentPage || 1,
+                pageSize: Constants.ROW_PER_PAGE,
+            });
             this.setModel({
                 newDetail: detail,
                 relatedPosts: result?.filter((item: any) => item._id !== id)

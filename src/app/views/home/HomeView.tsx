@@ -27,6 +27,7 @@ import 'swiper/components/pagination/pagination.min.css'
 import { Helpers } from "../../../commons/utils";
 import HomeBanner from "./HomeBanner";
 import { CardApartment } from "../../../components";
+import { IsHighLight } from "../../../constants/Enums";
 
 SwiperCore.use([Pagination, Navigation, Autoplay, EffectFade]);
 
@@ -63,7 +64,7 @@ export default class HomeView extends BaseView<HomeController, HomeModel, HomeSe
                                         );
                                     })}
                                     <SwiperSlide className="view-all-card" >
-                                        <Link color="inherit" className="cursor-pointer" href={`${Screens.LISTING_APARTMENT}?types=-1`}>
+                                        <Link color="inherit" className="cursor-pointer" href={`${Screens.LISTING_APARTMENT}?isHighLight=${IsHighLight.True}`}>
                                             {Strings.Common.VIEW_ALL}
                                         </Link>
                                     </SwiperSlide>

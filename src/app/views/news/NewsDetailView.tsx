@@ -21,39 +21,39 @@ export default class NewsDetailView extends BaseView<NewsDetailController, NewsD
     }
 
     public renderPage() {
-        const categories = [
-            {
-                id: 1,
-                type: Strings.News.DEALS_PROMOTIONS_TYPE,
-                title: Strings.News.DEALS_PROMOTIONS_TITLE,
-                date: Strings.News.DEALS_PROMOTIONS_DATE
-            },
-            {
-                id: 2,
-                type: Strings.News.DEALS_PROMOTIONS_TYPE,
-                title: Strings.News.DEALS_PROMOTIONS_TITLE,
-                date: Strings.News.DEALS_PROMOTIONS_DATE
-            },
-            {
-                id: 3,
-                type: Strings.News.DEALS_PROMOTIONS_TYPE,
-                title: Strings.News.DEALS_PROMOTIONS_TITLE,
-                date: Strings.News.DEALS_PROMOTIONS_DATE
-            },
-            {
-                id: 4,
-                type: Strings.News.DEALS_PROMOTIONS_TYPE,
-                title: Strings.News.DEALS_PROMOTIONS_TITLE,
-                date: Strings.News.DEALS_PROMOTIONS_DATE
-            },
-            {
-                id: 5,
-                type: Strings.News.DEALS_PROMOTIONS_TYPE,
-                title: Strings.News.DEALS_PROMOTIONS_TITLE,
-                date: Strings.News.DEALS_PROMOTIONS_DATE
-            },
-        ]
-        console.log(this.model.newDetail);
+        // const categories = [
+        //     {
+        //         id: 1,
+        //         type: Strings.News.DEALS_PROMOTIONS_TYPE,
+        //         title: Strings.News.DEALS_PROMOTIONS_TITLE,
+        //         date: Strings.News.DEALS_PROMOTIONS_DATE
+        //     },
+        //     {
+        //         id: 2,
+        //         type: Strings.News.DEALS_PROMOTIONS_TYPE,
+        //         title: Strings.News.DEALS_PROMOTIONS_TITLE,
+        //         date: Strings.News.DEALS_PROMOTIONS_DATE
+        //     },
+        //     {
+        //         id: 3,
+        //         type: Strings.News.DEALS_PROMOTIONS_TYPE,
+        //         title: Strings.News.DEALS_PROMOTIONS_TITLE,
+        //         date: Strings.News.DEALS_PROMOTIONS_DATE
+        //     },
+        //     {
+        //         id: 4,
+        //         type: Strings.News.DEALS_PROMOTIONS_TYPE,
+        //         title: Strings.News.DEALS_PROMOTIONS_TITLE,
+        //         date: Strings.News.DEALS_PROMOTIONS_DATE
+        //     },
+        //     {
+        //         id: 5,
+        //         type: Strings.News.DEALS_PROMOTIONS_TYPE,
+        //         title: Strings.News.DEALS_PROMOTIONS_TITLE,
+        //         date: Strings.News.DEALS_PROMOTIONS_DATE
+        //     },
+        // ]
+        // console.log(this.model.newDetail);
         return (
             <Container>
                 {/* <HomeHeader  /> */}
@@ -94,7 +94,7 @@ export default class NewsDetailView extends BaseView<NewsDetailController, NewsD
                                                         {moment((item.createdAt || 0) * 1000).format('DD/MM/YYYY')}
                                                     </Text> */}
                                                 </Col>
-                                                {index === categories.length - 1 ? null : <Separator top={16} bottom={16} />}
+                                                {/* {index === categories.length - 1 ? null : <Separator top={16} bottom={16} />} */}
                                             </Grid>
                                         )
                                     })}

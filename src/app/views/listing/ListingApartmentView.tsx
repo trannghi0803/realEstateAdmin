@@ -138,6 +138,17 @@ export default class ListingApartmentView extends BaseView<ListingApartmentContr
                                 </Grid>
                                 : null
                             }
+                            {this.model.isHighLight
+                                ?
+                                <Grid className="project-item">
+                                    <span className="project-item-name">
+                                        {`Bất động sản nổi bậc`}
+                                        {/* {GlobalState.categoryList?.find((c: any) => c.value === this.model.target?.value)?.label} */}
+                                    </span>
+                                    <CloseIcon className="cursor-pointer" onClick={() => this.controller.removeAttributes(7)} />
+                                </Grid>
+                                : null
+                            }
                         </Grid>
                         {/* Item */}
                         <Grid className="item-project-list" id="frameItem">

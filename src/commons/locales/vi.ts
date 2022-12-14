@@ -148,6 +148,7 @@ export default {
         CHOOSE_PROPERTY_TYPE: "Chọn loại bất động sản",
         LOCATION: "Vị trí",
         PROVINCE_DISTRICT_WARD: "Tỉnh/Quận/Phường",
+        PROVINCE: "Tỉnh/Thành phô",
         PRICE_RANGE: "Khoảng giá",
         PRICE_BILION_RANGE: "Khoảng giá (tỷ)",
         SEARCH_BY_PRICE: "Tìm theo giá",
